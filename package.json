@@ -1,0 +1,22 @@
+{
+  "name": "full-stack-gym-app",
+  "version": "0.0.1",
+  "description": "Gym tracker app to monitor your progress in the church of iron.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vinson Beduya",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.9"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.9",
+    "morgan": "^1.10.0"
+  }
+}
