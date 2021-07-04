@@ -5,6 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import {bgColor} from '../defaults';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -12,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: "row",
         justifyContent: "space-between",
         padding: "24px 12px 0px 12px",
-        backgroundColor: "#1e1f22"
+        backgroundColor: bgColor
     },
     menuButton: {
         height: 32,
@@ -28,9 +29,9 @@ const TopAppBar = () => {
     const classes = useStyles();
 
     return (
-        <AppBar position="static">
+        <AppBar position="fixed">
             <Toolbar className={classes.root}>
-                <Typography variant="h4" className={classes.title} color="inherit">
+                <Typography variant="h3" className={classes.title} color="inherit">
                     Gym App
                 </Typography>
                 <IconButton edge="start" color="inherit" aria-label="menu">
