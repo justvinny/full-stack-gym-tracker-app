@@ -1,0 +1,45 @@
+Site UI
+-Dashboard
+	-Should show user stats such as:
+		-Name
+		-Height
+		-Current Weight
+		-Starting Weight
+		-Goal Weight
+		-Heaviest exercise stats
+		-Favourite exercise stats
+		-Table of exercises from the latest workout day.
+
+-My progress
+	-Click will show available routines being used by user. It should also have a button at the 
+		bottom to design a custom workout routine.
+	-Clicking a routine should show your latest stats for each exercise in the routine.
+	-Each exercise should be editable to track progress. If the date during edit is more recent
+		than the last record, it will create a new document in the DB. Otherwise, it should update
+		the values of that exercise if it is on the same day.
+-Workout Routine Templates
+	-Shows some default workout routines that users can follow if they do not have one.
+
+-Graphs* 
+	-Future feature. Not included in MVC.
+
+Backend
+Since we're using MongoDB, design will be denormalised and embedded. See below for initial design.
+
+-User
+	-Name
+	-Height
+	-Weight (object)
+		-Current
+		-Starting
+		-Goal Weight
+	-Routines (array)
+		-Name
+		-Frequency (day in a week)
+		-List of exercises in the program (array)
+			-Name of exercise
+			-Unit of weight (kg, lbs)
+			-Date recorded (track progress)
+			-Sets (array)
+				-Weight lifted
+				-Repetitions

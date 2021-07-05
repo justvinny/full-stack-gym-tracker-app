@@ -1,5 +1,6 @@
 import { Card, CardContent, makeStyles, Typography } from "@material-ui/core";
 import { bgColor, textColor } from "../defaults";
+import DetailedRoutine from "../components/RoutineTemplates/DetailedRoutine";
 import RoutineCard from "../components/RoutineTemplates/RoutineCard";
 
 const mockData = [
@@ -84,6 +85,7 @@ const RoutineTemplates = () => {
     const classes = useStyles();
     return (
         <section>
+            {/* {mockData.map(routine => <DetailedRoutine routine={routine}/>)} */}
             {mockData.map(routine => <RoutineCard routine={routine}/>)}
         </section>
     )

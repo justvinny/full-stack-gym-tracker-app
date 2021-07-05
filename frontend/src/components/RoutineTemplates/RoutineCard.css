@@ -1,0 +1,7 @@
+.MuiAccordionSummary-content {
+    align-self: start;
+}
+
+.MuiAccordionSummary-content.Mui-expanded.MuiAccordionSummary-content {
+    margin: 12px 0;
+}
