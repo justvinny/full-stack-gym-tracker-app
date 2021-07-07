@@ -40,7 +40,7 @@ const CreateWorkout = () => {
     const [workouts, setWorkouts] = useState([
         {
             day: "",
-            exercises: [""]
+            exercises: [{ name: "", sets: [{}] }]
         }
     ]);
 
@@ -54,7 +54,7 @@ const CreateWorkout = () => {
             setState(newWorkouts);
         } else if (inputType === EXERCISE) {
             const newWorkouts = [...workouts];
-            newWorkouts[outerIndex].exercises[innerIndex] = event.target.value;
+            newWorkouts[outerIndex].exercises[innerIndex].name = event.target.value;
             setState(newWorkouts);
         }
     }
@@ -64,13 +64,18 @@ const CreateWorkout = () => {
         event.preventDefault();
         const newWorkouts = [...workouts];
         const newExercises = [...newWorkouts[index].exercises];
-        newWorkouts[index].exercises = newExercises.concat([" "]);
+        newWorkouts[index].exercises = newExercises.concat([{ name: "", sets: [{}] }]);
         setWorkouts(newWorkouts);
     }
 
     const addWorkoutDay = (event) => {
         event.preventDefault();
-        setWorkouts([...workouts, {day: "", exercises: [""]}]);
+        if (workouts.length >= 7)
+            return window.alert("Can't add more workouts. There's only 7 days in a week.");
+        setWorkouts([...workouts, {
+            day: "",
+            exercises: [{ name: "", sets: [{}] }]
+        }]);
     }
 
     const createWorkout = (event) => {
@@ -92,10 +97,10 @@ const CreateWorkout = () => {
                             workouts.map((workout, outerIndex) => (
                                 <div key={"workout" + outerIndex}>
                                     <Divider />
-                                    Day {outerIndex+1}
+                                    Day {outerIndex + 1}
                                     <TextField label="Add Workout Day" value={workouts[outerIndex].day} onChange={handleChange(setWorkouts, WORKOUT_DAY, outerIndex)} />
                                     {workout.exercises.map((exercise, innerIndex) => (
-                                        <TextField label="Add Exercise" value={workouts[outerIndex].exercises[innerIndex]} key={"exercise"+innerIndex} onChange={handleChange(setWorkouts, EXERCISE, outerIndex, innerIndex)}/>
+                                        <TextField label="Add Exercise" value={workouts[outerIndex].exercises[innerIndex].name} key={"exercise" + innerIndex} onChange={handleChange(setWorkouts, EXERCISE, outerIndex, innerIndex)} />
                                     ))}
                                     <Button variant="contained" color="primary" onClick={addExercise(outerIndex)}>Add Exercise</Button>
                                 </div>

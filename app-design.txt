@@ -35,7 +35,6 @@ Since we're using MongoDB, design will be denormalised and embedded. See below f
 		-Goal Weight
 	-Routines (array)
 		-Name
-		-Frequency (day in a week)
 		-List of exercises in the program (array)
 			-Name of exercise
 			-Unit of weight (kg, lbs)
