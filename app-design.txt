@@ -37,7 +37,6 @@ Since we're using MongoDB, design will be denormalised and embedded. See below f
 		-Name
 		-List of exercises in the program (array)
 			-Name of exercise
-			-Unit of weight (kg, lbs)
 			-Date recorded (track progress)
 			-Sets (array)
 				-Weight lifted

@@ -1,6 +1,7 @@
 import { TextField, Button, makeStyles, createMuiTheme, ThemeProvider, Divider } from "@material-ui/core"
 import { useState } from "react";
 import { bgColor } from "../defaults";
+import workoutsServices from "../services/workoutsServices";
 
 const useStyles = makeStyles((theme) => ({
     form: {
@@ -40,7 +41,17 @@ const CreateWorkout = () => {
     const [workouts, setWorkouts] = useState([
         {
             day: "",
-            exercises: [{ name: "", sets: [{}] }]
+            exercises: [
+                {
+                    name: "",
+                    sets: [
+                        {
+                            weight: 0,
+                            reps: 12
+                        }
+                    ]
+                }
+            ]
         }
     ]);
 
@@ -64,7 +75,7 @@ const CreateWorkout = () => {
         event.preventDefault();
         const newWorkouts = [...workouts];
         const newExercises = [...newWorkouts[index].exercises];
-        newWorkouts[index].exercises = newExercises.concat([{ name: "", sets: [{}] }]);
+        newWorkouts[index].exercises = newExercises.concat([{ name: "", sets: [{weight: 0, reps: 12}] }]);
         setWorkouts(newWorkouts);
     }
 
@@ -74,7 +85,7 @@ const CreateWorkout = () => {
             return window.alert("Can't add more workouts. There's only 7 days in a week.");
         setWorkouts([...workouts, {
             day: "",
-            exercises: [{ name: "", sets: [{}] }]
+            exercises: [{ name: "", sets: [{weight: 0, reps: 12}] }]
         }]);
     }
 
@@ -84,7 +95,7 @@ const CreateWorkout = () => {
             name: workoutInput,
             workouts: workouts
         }
-        console.log(fullWorkoutObj);
+        workoutsServices.addWorkout(fullWorkoutObj);
     }
 
     return (
