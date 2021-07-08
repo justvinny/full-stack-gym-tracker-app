@@ -17,16 +17,16 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
-
-
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :bodyContent'));
 
 // Data
-let exercisesData = [];
+// let exercisesData = [];
 
 // Routes
-app.get("/", (req, res) => {
-    Routine.find({}).then(result => res.json(result));
+app.get("/", async (req, res) => {
+    const exerciseData = await Routine.find({});
+    console.log(exerciseData);
+    res.json(exerciseData);
 });
 
 app.post("/", (req, res) => {
@@ -47,6 +47,10 @@ const PORT = process.env.PORT || 3001;
 const { atlastUri } = require("./config");
 const uri = atlastUri;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(async () => {
+        // exerciseData = await Routine.find({});
+        // console.log(exerciseData);
+    })
     .then(() => {
         app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
     }).catch(err => console.error(err));

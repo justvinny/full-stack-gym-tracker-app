@@ -5,3 +5,6 @@ Content-Type: application/json
     "name": "sample",
     "time": "12:00"
 }
+
+###
+GET http://localhost:3001/
