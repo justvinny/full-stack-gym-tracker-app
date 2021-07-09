@@ -29,12 +29,12 @@ const TrackProgress = () => {
             <Route exact path={`${path}`}>
                 <h1>Track progress!</h1>
                 <div className={classes.linksContainer}>
-                    {routines.map(routine => <Link key={routine._id} to={`${path}/${routine.name}`}>{path}/{routine.name}</Link>)}
+                    {routines.map(routine => <Link key={routine._id} to={`${path}/${routine._id}`}>{path}/{routine.name}</Link>)}
                     <Link to={`${path}/create-workout`}>{path}/create-workout</Link>
                 </div>
             </Route>
             {routines.map((routine, routineIndex) => (
-                <Route key={routine._id} path={`${path}/${routine.name}`}>
+                <Route key={routine._id} path={`${path}/${routine._id}`}>
                     <RoutineDetails routine={routine} routineIndex={routineIndex} routines={routines} setRoutines={setRoutines}/>
                 </Route>
             ))}
