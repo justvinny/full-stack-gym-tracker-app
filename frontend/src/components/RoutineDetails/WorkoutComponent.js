@@ -11,6 +11,9 @@ const useStyles = makeStyles((theme) => ({
     tableContainer: {
         border: "1px solid black",
         marginBottom: 10
+    },
+    boldText: {
+        fontWeight: 900
     }
 }));
 
@@ -23,10 +26,10 @@ const WorkoutComponent = ({ workout, routineIndex, workoutIndex, routines, setRo
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell>Exercise</TableCell>
-                            <TableCell align="right">Weight</TableCell>
-                            <TableCell align="right">Reps</TableCell>
-                            <TableCell align="right"></TableCell>
+                            <TableCell className={classes.boldText}>Exercise</TableCell>
+                            <TableCell className={classes.boldText} align="right">Weight</TableCell>
+                            <TableCell className={classes.boldText} align="right">Reps</TableCell>
+                            <TableCell className={classes.boldText} align="right"></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

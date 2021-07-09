@@ -1,5 +1,6 @@
 import { makeStyles, Typography, TableRow, TableCell, IconButton } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
+import { linkColor } from "../../defaults";
 
 const useStyles = makeStyles({
     editContainer: {
@@ -10,7 +11,7 @@ const useStyles = makeStyles({
     },
     edit: {
         display: "inline-block",
-        color: "blue",
+        color: linkColor,
         cursor: "pointer"
     }
 });

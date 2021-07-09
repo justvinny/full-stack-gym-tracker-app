@@ -3,6 +3,7 @@ import { makeStyles, Typography, Button, TableRow, TableCell, IconButton } from 
 import { Delete } from "@material-ui/icons";
 import { useState } from "react";
 import EditSetDialog from "./EditSetDialog";
+import { linkColor } from "../../defaults";
 
 const useStyles = makeStyles({
     editContainer: {
@@ -13,7 +14,7 @@ const useStyles = makeStyles({
     },
     edit: {
         display: "inline-block",
-        color: "blue",
+        color: linkColor,
         cursor: "pointer"
     }
 });

@@ -1,8 +1,9 @@
 import WorkoutComponent from "../components/RoutineDetails/WorkoutComponent";
-import { makeStyles, Button, Snackbar, IconButton } from "@material-ui/core";
+import { makeStyles, Button, Snackbar, IconButton, ThemeProvider } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
 import routineServices from "../services/routineServices";
 import { useState } from "react";
+import customTheme from "../themes/customTheme";
 
 const useStyles = makeStyles((theme) => ({
     tablesContainers: {
@@ -39,21 +40,23 @@ const RoutineDetails = ({ routine, routineIndex, routines, setRoutines }) => {
 
     return (
         <>
-            <div className={classes.tablesContainers}>
-                <div className={classes.headerContainer}>
-                    <h1>{routine.name}</h1>
-                    <Button variant="contained" color="primary" onClick={saveToDB}>Save Changes</Button>
+            <ThemeProvider theme={customTheme.myTheme}>
+                <div className={classes.tablesContainers}>
+                    <div className={classes.headerContainer}>
+                        <h1>{routine.name}</h1>
+                        <Button variant="contained" color="primary" onClick={saveToDB}>Save Changes</Button>
+                    </div>
+                    {routine.workouts.map((workout, workoutIndex) => (
+                        <WorkoutComponent
+                            key={workout._id}
+                            workout={workout}
+                            routineIndex={routineIndex}
+                            workoutIndex={workoutIndex}
+                            routines={routines}
+                            setRoutines={setRoutines} />
+                    ))}
                 </div>
-                {routine.workouts.map((workout, workoutIndex) => (
-                    <WorkoutComponent
-                        key={workout._id}
-                        workout={workout}
-                        routineIndex={routineIndex}
-                        workoutIndex={workoutIndex}
-                        routines={routines}
-                        setRoutines={setRoutines} />
-                ))}
-            </div>
+            </ThemeProvider>
             <Snackbar
                 anchorOrigin={{
                     vertical: "bottom",

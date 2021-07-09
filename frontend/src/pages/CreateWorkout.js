@@ -1,7 +1,7 @@
-import { TextField, Button, makeStyles, createMuiTheme, ThemeProvider, Divider } from "@material-ui/core"
+import { TextField, Button, makeStyles, ThemeProvider, Divider } from "@material-ui/core"
 import { useState } from "react";
-import { bgColor } from "../defaults";
 import routineServices from "../services/routineServices";
+import customTheme from "../themes/customTheme";
 
 const useStyles = makeStyles((theme) => ({
     form: {
@@ -20,14 +20,6 @@ const useStyles = makeStyles((theme) => ({
 
     }
 }));
-
-const theme = createMuiTheme({
-    palette: {
-        primary: {
-            main: bgColor
-        }
-    }
-});
 
 const CreateWorkout = ({ setRoutines, routines }) => {
     const classes = useStyles();
@@ -122,7 +114,7 @@ const CreateWorkout = ({ setRoutines, routines }) => {
 
     return (
         <div>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={customTheme.myTheme}>
                 <form>
                     <div className={classes.form}>
                         <TextField label="New Workout Name" value={routineInput} onChange={handleChange(setRoutineInput, WORKOUT_NAME)} />
