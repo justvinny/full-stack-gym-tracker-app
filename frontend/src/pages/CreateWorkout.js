@@ -116,7 +116,8 @@ const CreateWorkout = ({ setRoutines, routines }) => {
                     }
                 ])
             })
-            .then(window.alert("Successfully Created!"));
+            .then(window.alert("Successfully Created!"))
+            .catch(e => console.error(e));
     }
 
     return (

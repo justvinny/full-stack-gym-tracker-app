@@ -35,7 +35,7 @@ const RoutineCard = ({ routine }) => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <Accordion elevation="5" className={classes.accordion}>
+            <Accordion className={classes.accordion}>
                 <AccordionSummary expandIcon={<ExpandMore />} className={classes.summary}>
                     <Typography variant="h5">{routine.name}</Typography>
                 </AccordionSummary>

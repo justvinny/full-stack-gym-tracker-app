@@ -20,7 +20,8 @@ const TrackProgress = () => {
 
     useEffect(() => {
         routineServices.getAllRoutines()
-            .then(data => setRoutines(data));
+            .then(data => setRoutines(data))
+            .catch(e => console.error(e));
     }, []);
 
     return (
@@ -37,9 +38,6 @@ const TrackProgress = () => {
                     <RoutineDetails routine={routine} routineIndex={routineIndex} routines={routines} setRoutines={setRoutines}/>
                 </Route>
             ))}
-            <Route path={`${path}/ppl`}>
-                <h1>PPL</h1>
-            </Route>
             <Route path={`${path}/create-workout`}>
                 <CreateWorkout setRoutines={setRoutines} routines={routines} />
             </Route>

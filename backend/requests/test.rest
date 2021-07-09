@@ -1,4 +1,4 @@
-POST http://localhost:3001/
+POST http://localhost:3001/api/routines
 Content-Type: application/json
 
 {
@@ -7,4 +7,12 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3001/
+GET http://localhost:3001/api/routines
+
+###
+PUT http://localhost:3001/api/routines/60e635e40148d91d5462314c
+Content-Type: application/json
+
+{
+    "status": "Updated"
+}

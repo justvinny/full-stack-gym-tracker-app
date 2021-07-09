@@ -1,6 +1,4 @@
 import {
-    Card,
-    CardContent,
     makeStyles,
     Typography,
     TableContainer,
@@ -48,32 +46,28 @@ const useStyles = makeStyles((theme) => ({
 const DetailedRoutine = ({ routine }) => {
     const classes = useStyles();
     return (
-        // <Card className={classes.card} elevation="5">
-        //     <CardContent className="cardContent">
         <div className={classes.root}>
-            {routine.content.map(workout => {
+            {routine.content.map((workout, index) => {
                 return (
-                    <>
-                        <TableContainer component={Paper} className={classes.tableContainer} elevation="5">
-                            <Typography variant="h5" className={classes.workoutDay}>Day {workout.day} - {workout.name}</Typography>
-                            <Table className={classes.table}>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell className={classes.boldText}>Exercise</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {workout.exercises.map(exercise => {
-                                        return (
-                                            <TableRow>
-                                                <TableCell component="th" scope="row">{exercise}</TableCell>
-                                            </TableRow>
-                                        )
-                                    })}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                    </>
+                    <TableContainer key={workout.day + workout.name + index} component={Paper} className={classes.tableContainer}>
+                        <Typography variant="h5" className={classes.workoutDay}>Day {workout.day} - {workout.name}</Typography>
+                        <Table className={classes.table}>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell className={classes.boldText}>Exercise</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {workout.exercises.map((exercise, index) => {
+                                    return (
+                                        <TableRow key={exercise + index}>
+                                            <TableCell component="th" scope="row">{exercise}</TableCell>
+                                        </TableRow>
+                                    )
+                                })}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
                 )
             })}
         </div>
