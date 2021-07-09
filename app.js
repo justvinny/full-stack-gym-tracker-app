@@ -18,8 +18,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :bodyContent'));
+app.use(express.static("build"));
 
 // Routes
+
 app.get("/api/routines", async (req, res) => {
     const exerciseData = await Routine.find({});
     res.json(exerciseData);
