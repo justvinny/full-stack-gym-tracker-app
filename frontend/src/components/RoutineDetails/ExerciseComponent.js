@@ -30,7 +30,16 @@ const ExerciseComponent = ({ exercise, routineIndex, workoutIndex, exerciseIndex
         setDialogSet({ ...set })
     }
 
+    const deleteExercise = (event) => {
+        event.preventDefault();
+        const updatedExercises = routines[routineIndex].workouts[workoutIndex].exercises.filter(_exercise => _exercise._id !== exercise._id);
+        const newRoutines = [...routines];
+        newRoutines[routineIndex].workouts[workoutIndex].exercises = updatedExercises;
+        setRoutines(newRoutines);
+    }
+
     const deleteSet = (set) => (event) => {
+        event.preventDefault();
         const newExerciseSets = routines[routineIndex].workouts[workoutIndex].exercises[exerciseIndex].sets.filter(_set => _set._id !== set._id);
         const newRoutines = [...routines];
         newRoutines[routineIndex].workouts[workoutIndex].exercises[exerciseIndex].sets = newExerciseSets;
@@ -61,7 +70,10 @@ const ExerciseComponent = ({ exercise, routineIndex, workoutIndex, exerciseIndex
     return (
         <>
             <TableRow>
-                <TableCell>{exercise.name}</TableCell>
+                <TableCell>
+                    <IconButton size="small" onClick={deleteExercise}><Delete size="small" color="primary" /></IconButton>
+                    {exercise.name}
+                </TableCell>
                 <TableCell align="right">{exercise.sets[0].weight}</TableCell>
                 <TableCell align="right">{exercise.sets[0].reps}</TableCell>
                 <TableCell width="100px" align="center">
