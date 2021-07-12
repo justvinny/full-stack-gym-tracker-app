@@ -1,5 +1,5 @@
 import ExerciseComponent from "./ExerciseComponent";
-import { Paper, Table, TableContainer, TableHead, TableBody, TableRow, TableCell, makeStyles } from "@material-ui/core";
+import { Paper, Table, TableContainer, TableHead, TableBody, TableRow, TableCell, makeStyles, Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -19,6 +19,12 @@ const useStyles = makeStyles((theme) => ({
 
 const WorkoutComponent = ({ workout, routineIndex, workoutIndex, routines, setRoutines }) => {
     const classes = useStyles();
+    
+    const addExercise = (event) => {
+        event.preventDefault();
+        console.log("add exercise");
+    }
+    
     return (
         <>
             <TableContainer component={Paper} className={classes.tableContainer}>
@@ -43,9 +49,17 @@ const WorkoutComponent = ({ workout, routineIndex, workoutIndex, routines, setRo
                                 routines={routines}
                                 setRoutines={setRoutines} />
                         ))}
+                        <TableRow>
+                            <TableCell />
+                            <TableCell />
+                            <TableCell />
+                            <TableCell align="right">
+                                <Button variant="contained" color="primary" onClick={addExercise}>Add Exercise</Button>
+                            </TableCell>
+                        </TableRow>
                     </TableBody>
                 </Table>
-            </TableContainer>
+            </TableContainer >
         </>
 
     )

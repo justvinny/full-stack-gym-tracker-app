@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: 10
     }
 }));
+
 const RoutineDetails = ({ routine, routineIndex, routines, setRoutines }) => {
     const classes = useStyles();
 

@@ -20,7 +20,7 @@ const useStyles = makeStyles({
     }
 });
 
-const EditSetDialog = ({ handleClose, open, dialogSet, setDialogSet, handleSave }) => {
+const EditSetDialog = ({ handleClose, open, dialogSet, setDialogSet, handleSave, currentSetIndex }) => {
     const classes = useStyles();
 
     const WEIGHT = "WEIGHT";
@@ -45,7 +45,7 @@ const EditSetDialog = ({ handleClose, open, dialogSet, setDialogSet, handleSave 
                     <TextField type="number" variant="outlined" value={dialogSet.weight} onChange={handleChange(WEIGHT)} label="Weight" className={classes.field}></TextField>
                     <TextField type="number" variant="outlined" value={dialogSet.reps} onChange={handleChange(REPS)} label="Reps"></TextField>
                 </div>
-                <Button variant="contained" color="primary" className={classes.button} onClick={handleSave}>Save</Button>
+                <Button variant="contained" color="primary" className={classes.button} onClick={handleSave(currentSetIndex)}>Save</Button>
             </div>
         </Dialog>
     )

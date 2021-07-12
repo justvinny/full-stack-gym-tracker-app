@@ -23,11 +23,13 @@ const ExerciseComponent = ({ exercise, routineIndex, workoutIndex, exerciseIndex
 
     const [open, setOpen] = useState(false);
     const [dialogSet, setDialogSet] = useState({ weight: 0, reps: 0 })
+    const [currentSetIndex, changeSetIndex] = useState(0);
 
-    const editClick = (set) => (event) => {
+    const editClick = (set, setIndex) => (event) => {
         event.preventDefault();
         setOpen(true);
         setDialogSet({ ...set })
+        changeSetIndex(setIndex);
     }
 
     const deleteExercise = (event) => {
@@ -51,11 +53,10 @@ const ExerciseComponent = ({ exercise, routineIndex, workoutIndex, exerciseIndex
         setOpen(false);
     }
 
-    const handleSave = (event) => {
+    const handleSave = (currentSetIndex) => (event) => {
         event.preventDefault();
-        const setIndex = routines[routineIndex].workouts[workoutIndex].exercises[exerciseIndex].sets.findIndex(set => set._id === dialogSet._id);
         const copyRoutines = [...routines];
-        copyRoutines[routineIndex].workouts[workoutIndex].exercises[exerciseIndex].sets[setIndex] = { ...dialogSet };
+        copyRoutines[routineIndex].workouts[workoutIndex].exercises[exerciseIndex].sets[currentSetIndex] = { ...dialogSet };
         setRoutines(copyRoutines);
         handleClose(event);
     }
@@ -103,7 +104,8 @@ const ExerciseComponent = ({ exercise, routineIndex, workoutIndex, exerciseIndex
                 handleClose={handleClose}
                 dialogSet={dialogSet}
                 setDialogSet={setDialogSet}
-                handleSave={handleSave} />
+                handleSave={handleSave}
+                currentSetIndex={currentSetIndex} />
         </>
     )
 }
