@@ -1,5 +1,7 @@
 import ExerciseComponent from "./ExerciseComponent";
 import { Paper, Table, TableContainer, TableHead, TableBody, TableRow, TableCell, makeStyles, Button } from "@material-ui/core";
+import {useState} from "react";
+import NewExerciseDialog from "./NewExerciseDialog";
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -20,9 +22,13 @@ const useStyles = makeStyles((theme) => ({
 const WorkoutComponent = ({ workout, routineIndex, workoutIndex, routines, setRoutines }) => {
     const classes = useStyles();
     
+    const [newExerciseOpen, setNewExericseOpen] = useState(false);
+
     const addExercise = (event) => {
         event.preventDefault();
-        console.log("add exercise");
+        const copyRoutines = [...routines];
+        copyRoutines[routineIndex].workouts[workoutIndex].exercises.push({name:"Newly added", sets:[{reps: 12, weight: 0}]});
+        setRoutines(copyRoutines);
     }
     
     return (
@@ -60,6 +66,7 @@ const WorkoutComponent = ({ workout, routineIndex, workoutIndex, routines, setRo
                     </TableBody>
                 </Table>
             </TableContainer >
+            <NewExerciseDialog />
         </>
 
     )

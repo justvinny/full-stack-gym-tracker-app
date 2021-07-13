@@ -79,7 +79,7 @@ const ExerciseComponent = ({ exercise, routineIndex, workoutIndex, exerciseIndex
                 <TableCell align="right">{exercise.sets[0].reps}</TableCell>
                 <TableCell width="100px" align="center">
                     <div className={classes.editContainer}>
-                        <Typography className={classes.edit} onClick={editClick(exercise.sets[0])}>Edit</Typography>
+                        <Typography className={classes.edit} onClick={editClick(exercise.sets[0], 0)}>Edit</Typography>
                         <IconButton size="small" onClick={deleteSet(exercise.sets[0])}><Delete size="small" color="primary" /></IconButton>
                     </div>
                 </TableCell>
