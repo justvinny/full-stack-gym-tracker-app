@@ -34,15 +34,15 @@ const ExerciseComponent = ({ exercise, routineIndex, workoutIndex, exerciseIndex
 
     const deleteExercise = (event) => {
         event.preventDefault();
-        const updatedExercises = routines[routineIndex].workouts[workoutIndex].exercises.filter(_exercise => _exercise._id !== exercise._id);
+        const updatedExercises = routines[routineIndex].workouts[workoutIndex].exercises.filter((_exercise, _exerciseIndex) => _exerciseIndex !== exerciseIndex);
         const newRoutines = [...routines];
         newRoutines[routineIndex].workouts[workoutIndex].exercises = updatedExercises;
         setRoutines(newRoutines);
     }
 
-    const deleteSet = (set) => (event) => {
+    const deleteSet = (setIndex) => (event) => {
         event.preventDefault();
-        const newExerciseSets = routines[routineIndex].workouts[workoutIndex].exercises[exerciseIndex].sets.filter(_set => _set._id !== set._id);
+        const newExerciseSets = routines[routineIndex].workouts[workoutIndex].exercises[exerciseIndex].sets.filter((_set, _setIndex) => _setIndex !== setIndex);
         const newRoutines = [...routines];
         newRoutines[routineIndex].workouts[workoutIndex].exercises[exerciseIndex].sets = newExerciseSets;
         setRoutines(newRoutines);

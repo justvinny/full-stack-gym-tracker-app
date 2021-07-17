@@ -27,7 +27,7 @@ const SetComponent = ({ set, deleteSet, setIndex, editClick }) => {
             <TableCell width="100px" align="center">
                 <div className={classes.editContainer}>
                     <Typography className={classes.edit} onClick={editClick(set, setIndex)}>Edit</Typography>
-                    <IconButton size="small" onClick={deleteSet(set)}><Delete size="small" color="primary" /></IconButton>
+                    <IconButton size="small" onClick={deleteSet(setIndex)}><Delete size="small" color="primary" /></IconButton>
                 </div>
             </TableCell>
         </TableRow>
