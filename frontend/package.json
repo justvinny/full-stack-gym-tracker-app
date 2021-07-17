@@ -18,7 +18,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "prebuild": "rmdir \"../build\" /S /Q",
     "build": "react-scripts build",
+    "postbuild": "Xcopy \"./build\" \"../build\" /E /H /I",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
