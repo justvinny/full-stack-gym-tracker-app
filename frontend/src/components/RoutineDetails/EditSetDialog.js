@@ -34,7 +34,6 @@ const EditSetDialog = ({ handleClose, open, dialogSet, setDialogSet, handleSave,
         }
     }
 
-
     return (
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle>

@@ -1,6 +1,6 @@
 import ExerciseComponent from "./ExerciseComponent";
 import { Paper, Table, TableContainer, TableHead, TableBody, TableRow, TableCell, makeStyles, Button } from "@material-ui/core";
-import {useState} from "react";
+import { useState } from "react";
 import NewExerciseDialog from "./NewExerciseDialog";
 
 const useStyles = makeStyles((theme) => ({
@@ -21,16 +21,42 @@ const useStyles = makeStyles((theme) => ({
 
 const WorkoutComponent = ({ workout, routineIndex, workoutIndex, routines, setRoutines }) => {
     const classes = useStyles();
-    
+
     const [newExerciseOpen, setNewExericseOpen] = useState(false);
+    const [exerciseField, setExerciseField] = useState("");
 
     const addExercise = (event) => {
         event.preventDefault();
-        const copyRoutines = [...routines];
-        copyRoutines[routineIndex].workouts[workoutIndex].exercises.push({name:"Newly added", sets:[{reps: 12, weight: 0}]});
-        setRoutines(copyRoutines);
+        setNewExericseOpen(true);
+    }
+
+    const handleChange = (event) => {
+        setExerciseField(event.target.value);
+    }
+
+    const handleClose = (event) => {
+        event.preventDefault();
+        setNewExericseOpen(false);
     }
     
+    const handleSave = (event) => {
+        event.preventDefault();
+        const newExercise = {
+            name: exerciseField,
+            sets: [
+                {
+                    weight: 0,
+                    reps: 12
+                }
+            ]
+        }
+        const copyRoutines = [...routines];
+        copyRoutines[routineIndex].workouts[workoutIndex].exercises.push(newExercise);
+        setExerciseField("");
+        handleClose(event);
+        setRoutines(copyRoutines);
+    }
+
     return (
         <>
             <TableContainer component={Paper} className={classes.tableContainer}>
@@ -47,7 +73,7 @@ const WorkoutComponent = ({ workout, routineIndex, workoutIndex, routines, setRo
                     <TableBody>
                         {workout.exercises.map((exercise, exerciseIndex) => (
                             <ExerciseComponent
-                                key={exercise._id}
+                                key={exercise._id ? exercise._id : "new" + exerciseIndex}
                                 routineIndex={routineIndex}
                                 workoutIndex={workoutIndex}
                                 exerciseIndex={exerciseIndex}
@@ -66,9 +92,14 @@ const WorkoutComponent = ({ workout, routineIndex, workoutIndex, routines, setRo
                     </TableBody>
                 </Table>
             </TableContainer >
-            <NewExerciseDialog />
+            <NewExerciseDialog
+                newExerciseOpen={newExerciseOpen}
+                handleClose={handleClose}
+                handleSave={handleSave}
+                exerciseField={exerciseField}
+                handleChange={handleChange}
+            />
         </>
-
     )
 }
 
