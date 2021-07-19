@@ -45,6 +45,7 @@ const TrackProgress = () => {
             .catch(e => console.error(e));
     }, []);
 
+
     return (
         <Switch>
             <Route exact path={`${path}`}>
@@ -56,7 +57,12 @@ const TrackProgress = () => {
                         {routines.map(routine => (
                             <>
                                 <Link key={routine._id} to={`${path}/${routine._id}`}>
-                                    <Button className={classes.button} variant="outlined" color="primary">{routine.name}</Button>
+                                    <Button
+                                        className={classes.button}
+                                        variant="outlined"
+                                        color="primary">
+                                        {routine.name}
+                                    </Button>
                                 </Link>
                             </>
                         ))}
