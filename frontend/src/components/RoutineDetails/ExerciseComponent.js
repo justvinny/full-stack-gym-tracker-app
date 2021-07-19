@@ -1,6 +1,6 @@
 import SetComponent from "./SetComponent";
-import { makeStyles, Typography, Button, TableRow, TableCell, IconButton } from "@material-ui/core";
-import { Delete } from "@material-ui/icons";
+import { makeStyles, Button, TableRow, TableCell, IconButton } from "@material-ui/core";
+import { Delete, Edit } from "@material-ui/icons";
 import { useState } from "react";
 import EditSetDialog from "./EditSetDialog";
 import { linkColor } from "../../defaults";
@@ -79,7 +79,7 @@ const ExerciseComponent = ({ exercise, routineIndex, workoutIndex, exerciseIndex
                 <TableCell align="right">{exercise.sets[0].reps}</TableCell>
                 <TableCell width="100px" align="center">
                     <div className={classes.editContainer}>
-                        <Typography className={classes.edit} onClick={editClick(exercise.sets[0], 0)}>Edit</Typography>
+                        <IconButton size="small" onClick={editClick(exercise.sets[0], 0)}><Edit size="small" color="primary" /></IconButton>
                         <IconButton size="small" onClick={deleteSet(exercise.sets[0])}><Delete size="small" color="primary" /></IconButton>
                     </div>
                 </TableCell>
