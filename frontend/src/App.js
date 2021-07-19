@@ -5,6 +5,10 @@ import TopAppBar from './components/MenuNavigation/TopAppBar';
 import RoutineTemplates from './pages/RoutineTemplates';
 import TrackProgress from './pages/TrackProgress';
 
+const footerStyle = {
+  paddingBottom: "20px"
+}
+
 const App = () => {
   return (
     <div className="App">
@@ -23,7 +27,7 @@ const App = () => {
             </Route>
           </Switch>
         </main>
-        <footer>
+        <footer style={footerStyle}>
           <Typography variant="body1">&copy; Copyright 2021 by Vinson Beduya. All rights reserved.</Typography>
         </footer>
       </Router>

@@ -1,6 +1,6 @@
 import WorkoutComponent from "../components/RoutineDetails/WorkoutComponent";
-import { makeStyles, Button, Snackbar, IconButton, ThemeProvider } from "@material-ui/core";
-import { Close } from "@material-ui/icons";
+import { makeStyles, Button, Snackbar, IconButton, ThemeProvider, Fab } from "@material-ui/core";
+import { Close, ArrowUpward } from "@material-ui/icons";
 import routineServices from "../services/routineServices";
 import { useState } from "react";
 import customTheme from "../themes/customTheme";
@@ -16,6 +16,11 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "space-between",
         alignItems: "center",
         marginBottom: 10
+    },
+    fab: {
+        position: "fixed",
+        bottom: 10,
+        right: 10
     }
 }));
 
@@ -39,6 +44,11 @@ const RoutineDetails = ({ routine, routineIndex, routines, setRoutines }) => {
         setOpenSnackBar(false);
     }
 
+    const scrollToTop = (event) => {
+        event.preventDefault();
+        window.scrollTo(0, 0);
+    }
+
     return (
         <>
             <ThemeProvider theme={customTheme.myTheme}>
@@ -57,6 +67,9 @@ const RoutineDetails = ({ routine, routineIndex, routines, setRoutines }) => {
                             setRoutines={setRoutines} />
                     ))}
                 </div>
+                <Fab color="primary" className={classes.fab} onClick={scrollToTop}>
+                    <ArrowUpward />
+                </Fab>
             </ThemeProvider>
             <Snackbar
                 anchorOrigin={{
