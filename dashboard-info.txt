@@ -1,0 +1,20 @@
+Dashboard Info
+
+- name
+- age
+- about me
+
+- height
+- weight
+	-start
+	-current
+	-goal
+- favourite exercises (show 3)
+	- exercise name
+	- best weight
+	- best reps
+- latest workout (table form maybe)
+	
+
+DB Design
+-
