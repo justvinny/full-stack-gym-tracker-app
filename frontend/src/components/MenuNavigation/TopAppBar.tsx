@@ -1,14 +1,13 @@
-import React from "react";
 import { AppBar, Toolbar, IconButton, Box } from "@mui/material";
-import MenuIcon from "@material-ui/icons/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
 import { bgColor } from "../../defaults";
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import MenuDrawer from "./MenuDrawer";
 
 const TopAppBar = () => {
   const [isVisible, setVisible] = useState(false);
 
-  const toggleDrawer = (event) => {
+  const toggleDrawer = (event: SyntheticEvent) => {
     event.preventDefault();
     setVisible(!isVisible);
   };

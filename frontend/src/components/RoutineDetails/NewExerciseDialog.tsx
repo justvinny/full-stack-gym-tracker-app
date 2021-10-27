@@ -5,6 +5,15 @@ import {
   TextField,
   Button,
 } from "@mui/material";
+import { SyntheticEvent } from "react";
+
+interface Props {
+  newExerciseOpen: boolean,
+  handleClose(event: SyntheticEvent): void,
+  handleSave(event: SyntheticEvent): void,
+  exerciseField: string,
+  handleChange(event: SyntheticEvent): void,
+}
 
 const NewExerciseDialog = ({
   newExerciseOpen,
@@ -12,7 +21,7 @@ const NewExerciseDialog = ({
   handleSave,
   exerciseField,
   handleChange,
-}) => {
+}: Props) => {
   return (
     <Dialog onClose={handleClose} open={newExerciseOpen}>
       <Box

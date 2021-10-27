@@ -1,7 +1,22 @@
 import { Box, TableRow, TableCell, IconButton } from "@mui/material";
-import { Delete, Edit } from "@material-ui/icons";
+import { Delete, Edit } from "@mui/icons-material";
+import { SyntheticEvent } from "react";
+import { ObjectId } from "mongodb";
 
-const SetComponent = ({ set, deleteSet, setIndex, editClick }) => {
+interface Props {
+  set: WorkSet;
+  deleteSet(setIndex: number): (event: SyntheticEvent) => void;
+  setIndex: number;
+  editClick(set: WorkSet, setIndex: number): (event: SyntheticEvent) => void;
+}
+
+interface WorkSet {
+  _id?: ObjectId;
+  weight: number;
+  reps: number;
+}
+
+const SetComponent = ({ set, deleteSet, setIndex, editClick }: Props) => {
   return (
     <TableRow>
       <TableCell></TableCell>
@@ -17,10 +32,10 @@ const SetComponent = ({ set, deleteSet, setIndex, editClick }) => {
           }}
         >
           <IconButton size="small" onClick={editClick(set, setIndex)}>
-            <Edit size="small" color="primary" />
+            <Edit fontSize="small" color="primary" />
           </IconButton>
           <IconButton size="small" onClick={deleteSet(setIndex)}>
-            <Delete size="small" color="primary" />
+            <Delete fontSize="small" color="primary" />
           </IconButton>
         </Box>
       </TableCell>

@@ -10,8 +10,41 @@ import {
   Box,
   Button,
 } from "@mui/material";
-import { useState } from "react";
+import React, { SyntheticEvent, useState } from "react";
 import NewExerciseDialog from "./NewExerciseDialog";
+import { ObjectId } from "mongodb";
+
+interface Props {
+  workout: Workout;
+  routineIndex: number;
+  workoutIndex: number;
+  routines: Routine[];
+  setRoutines: React.Dispatch<React.SetStateAction<Routine[]>>;
+}
+
+interface Routine {
+  _id?: ObjectId;
+  name: string;
+  workouts: Workout[];
+}
+
+interface Workout {
+  _id?: ObjectId;
+  day: string;
+  exercises: Exercise[];
+}
+
+interface Exercise {
+  _id?: ObjectId;
+  name: string;
+  sets: WorkSet[];
+}
+
+interface WorkSet {
+  _id?: ObjectId;
+  weight: number;
+  reps: number;
+}
 
 const WorkoutComponent = ({
   workout,
@@ -19,25 +52,25 @@ const WorkoutComponent = ({
   workoutIndex,
   routines,
   setRoutines,
-}) => {
+}: Props) => {
   const [newExerciseOpen, setNewExericseOpen] = useState(false);
   const [exerciseField, setExerciseField] = useState("");
 
-  const addExercise = (event) => {
+  const addExercise = (event: SyntheticEvent) => {
     event.preventDefault();
     setNewExericseOpen(true);
   };
 
-  const handleChange = (event) => {
-    setExerciseField(event.target.value);
+  const handleChange = (event: SyntheticEvent) => {
+    setExerciseField((event.target as HTMLInputElement).value);
   };
 
-  const handleClose = (event) => {
+  const handleClose = (event: SyntheticEvent) => {
     event.preventDefault();
     setNewExericseOpen(false);
   };
 
-  const handleSave = (event) => {
+  const handleSave = (event: SyntheticEvent) => {
     event.preventDefault();
     const newExercise = {
       name: exerciseField,
@@ -92,7 +125,7 @@ const WorkoutComponent = ({
           <TableBody>
             {workout.exercises.map((exercise, exerciseIndex) => (
               <ExerciseComponent
-                key={exercise._id ? exercise._id : "new" + exerciseIndex}
+                key={(exercise._id ? exercise._id : "new" + exerciseIndex) as React.Key}
                 routineIndex={routineIndex}
                 workoutIndex={workoutIndex}
                 exerciseIndex={exerciseIndex}

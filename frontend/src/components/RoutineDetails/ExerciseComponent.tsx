@@ -6,9 +6,43 @@ import {
   TableCell,
   IconButton,
 } from "@mui/material";
-import { Delete, Edit } from "@material-ui/icons";
-import { useState } from "react";
+import { Delete, Edit } from "@mui/icons-material";
+import React, { SyntheticEvent, useState } from "react";
 import EditSetDialog from "./EditSetDialog";
+import {ObjectId} from "mongodb";
+
+interface Props {
+  exercise: Exercise,
+  routineIndex: number,
+  workoutIndex: number,
+  exerciseIndex: number,
+  routines: Routine[],
+  setRoutines: React.Dispatch<React.SetStateAction<Routine[]>>,
+}
+
+interface Routine {
+  _id?: ObjectId,
+  name: string,
+  workouts: Workout[]
+}
+
+interface Workout {
+  _id?: ObjectId,
+  day: string,
+  exercises: Exercise[]
+}
+
+interface Exercise {
+  _id?: ObjectId,
+  name: string,
+  sets: WorkSet[]
+}
+
+interface WorkSet {
+  _id?: ObjectId,
+  weight: number,
+  reps: number
+}
 
 const ExerciseComponent = ({
   exercise,
@@ -17,19 +51,19 @@ const ExerciseComponent = ({
   exerciseIndex,
   routines,
   setRoutines,
-}) => {
+}: Props) => {
   const [open, setOpen] = useState(false);
   const [dialogSet, setDialogSet] = useState({ weight: 0, reps: 0 });
   const [currentSetIndex, changeSetIndex] = useState(0);
 
-  const editClick = (set, setIndex) => (event) => {
+  const editClick = (set: WorkSet, setIndex: number) => (event: SyntheticEvent) => {
     event.preventDefault();
     setOpen(true);
     setDialogSet({ ...set });
     changeSetIndex(setIndex);
   };
 
-  const deleteExercise = (event) => {
+  const deleteExercise = (event: SyntheticEvent) => {
     event.preventDefault();
     const updatedExercises = routines[routineIndex].workouts[
       workoutIndex
@@ -42,7 +76,7 @@ const ExerciseComponent = ({
     setRoutines(newRoutines);
   };
 
-  const deleteSet = (setIndex) => (event) => {
+  const deleteSet = (setIndex: number) => (event: SyntheticEvent) => {
     event.preventDefault();
     const newExerciseSets = routines[routineIndex].workouts[
       workoutIndex
@@ -56,12 +90,12 @@ const ExerciseComponent = ({
     setRoutines(newRoutines);
   };
 
-  const handleClose = (event) => {
+  const handleClose = (event: SyntheticEvent) => {
     event.preventDefault();
     setOpen(false);
   };
 
-  const handleSave = (currentSetIndex) => (event) => {
+  const handleSave = (currentSetIndex: number) => (event: SyntheticEvent) => {
     event.preventDefault();
     const copyRoutines = [...routines];
     copyRoutines[routineIndex].workouts[workoutIndex].exercises[
@@ -71,7 +105,7 @@ const ExerciseComponent = ({
     handleClose(event);
   };
 
-  const handleAddSet = (event) => {
+  const handleAddSet = (event: SyntheticEvent) => {
     event.preventDefault();
     const copyRoutines = [...routines];
     copyRoutines[routineIndex].workouts[workoutIndex].exercises[
@@ -85,7 +119,7 @@ const ExerciseComponent = ({
       <TableRow>
         <TableCell>
           <IconButton size="small" onClick={deleteExercise}>
-            <Delete size="small" color="primary" />
+            <Delete fontSize="small" color="primary" />
           </IconButton>
           {exercise.name}
         </TableCell>
@@ -101,10 +135,10 @@ const ExerciseComponent = ({
             }}
           >
             <IconButton size="small" onClick={editClick(exercise.sets[0], 0)}>
-              <Edit size="small" color="primary" />
+              <Edit fontSize="small" color="primary" />
             </IconButton>
-            <IconButton size="small" onClick={deleteSet(exercise.sets[0])}>
-              <Delete size="small" color="primary" />
+            <IconButton size="small" onClick={deleteSet(0)}>
+              <Delete fontSize="small" color="primary" />
             </IconButton>
           </Box>
         </TableCell>
@@ -112,13 +146,11 @@ const ExerciseComponent = ({
       {exercise.sets.length > 1 &&
         exercise.sets.slice(1).map((set, setIndex) => (
           <SetComponent
-            key={set._id ? set._id : setIndex}
+            key={setIndex}
             set={set}
             editClick={editClick}
             deleteSet={deleteSet}
-            setIndex={setIndex + 1} // +1 because we're starting on index 1 as we sliced the first element.
-            routines={routines}
-            setRoutines={setRoutines}
+            setIndex={setIndex}
           />
         ))}
       <TableRow>

@@ -5,6 +5,21 @@ import {
   Button,
 } from "@mui/material";
 import { Box } from "@mui/system";
+import {SyntheticEvent} from "react";
+
+interface WorkingSet {
+  weight: number,
+  reps: number
+}
+
+interface Props {
+  handleClose(event: SyntheticEvent): void,
+  open: boolean,
+  dialogSet: WorkingSet,
+  setDialogSet: React.Dispatch<React.SetStateAction<WorkingSet>>,
+  handleSave(currentSetIndex: number): (event: SyntheticEvent) => void,
+  currentSetIndex: number
+}
 
 const EditSetDialog = ({
   handleClose,
@@ -13,15 +28,15 @@ const EditSetDialog = ({
   setDialogSet,
   handleSave,
   currentSetIndex,
-}) => {
+}: Props) => {
   const WEIGHT = "WEIGHT";
   const REPS = "REPS";
 
-  const handleChange = (type) => (event) => {
+  const handleChange = (type: string) => (event: SyntheticEvent) => {
     if (type === WEIGHT) {
-      setDialogSet({ ...dialogSet, weight: Number(event.target.value) });
+      setDialogSet({ ...dialogSet, weight: Number((event.target as HTMLInputElement).value) });
     } else if (type === REPS) {
-      setDialogSet({ ...dialogSet, reps: Number(event.target.value) });
+      setDialogSet({ ...dialogSet, reps: Number((event.target as HTMLInputElement).value) });
     }
   };
 
@@ -65,7 +80,7 @@ const EditSetDialog = ({
             marginTop: 10,
             alignSelf: "end",
           }}
-          onClick={handleSave(currentSetIndex)}
+          onClick={handleSave(currentSetIndex)} 
         >
           Save
         </Button>

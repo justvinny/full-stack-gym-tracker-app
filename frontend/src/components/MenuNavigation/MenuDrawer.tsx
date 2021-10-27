@@ -1,10 +1,16 @@
 import { Drawer, List, ListItem, ListItemText, Box } from "@mui/material";
+import { SyntheticEvent } from "react";
 import { useHistory } from "react-router";
 
-const MenuDrawer = ({ isVisible, toggleDrawer }) => {
+interface Props {
+  isVisible: boolean,
+  toggleDrawer(event: SyntheticEvent): void
+}
+
+const MenuDrawer = ({ isVisible, toggleDrawer } : Props) => {
   const history = useHistory();
 
-  const btnLink = (path) => () => {
+  const btnLink = (path: string) => () => {
     history.push(path);
   };
 
