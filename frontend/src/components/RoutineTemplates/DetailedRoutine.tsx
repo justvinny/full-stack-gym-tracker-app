@@ -10,7 +10,22 @@ import {
 } from "@mui/material";
 import "./DetailedRoutine.css";
 
-const DetailedRoutine = ({ routine }) => {
+interface Props {
+  routine: RoutineTemplate;
+}
+
+interface RoutineTemplate {
+  name: string,
+  content: Day[]
+}
+
+interface Day {
+  day: number,
+  name: string,
+  exercises: string[]
+}
+
+const DetailedRoutine = ({ routine }: Props) => {
   return (
     <Box>
       {routine.content.map((workout, index) => {
