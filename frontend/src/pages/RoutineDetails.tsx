@@ -9,21 +9,60 @@ import {
 } from "@mui/material";
 import { Close, ArrowUpward } from "@material-ui/icons";
 import routineServices from "../services/routineServices";
-import { useState } from "react";
+import React, { useState } from "react";
 import customTheme from "../themes/customTheme";
+import { ObjectId } from "mongodb";
 
-const RoutineDetails = ({ routine, routineIndex, routines, setRoutines }) => {
+interface Props {
+  routine: Routine;
+  routineIndex: number;
+  routines: Routine[];
+  setRoutines: React.Dispatch<React.SetStateAction<Routine[]>>;
+}
+
+interface Routine {
+  _id?: ObjectId;
+  name: string;
+  workouts: Workout[];
+}
+
+interface Workout {
+  _id?: ObjectId;
+  day: string;
+  exercises: Exercise[];
+}
+
+interface Exercise {
+  _id?: ObjectId;
+  name: string;
+  sets: WorkSet[];
+}
+
+interface WorkSet {
+  _id?: ObjectId;
+  weight: number;
+  reps: number;
+}
+
+const RoutineDetails = ({
+  routine,
+  routineIndex,
+  routines,
+  setRoutines,
+}: Props) => {
   const [openSnackBar, setOpenSnackBar] = useState(false);
 
-  const saveToDB = (event) => {
+  const saveToDB = (event: React.SyntheticEvent) => {
     event.preventDefault();
     routineServices
       .updateRoutine(routine)
-      .then(setOpenSnackBar(true))
+      .then(() => {
+        setOpenSnackBar(true);
+      })
       .catch((error) => console.log(error));
   };
 
-  const handleClose = (event, reason) => {
+  const handleClose = (event: React.SyntheticEvent, reason?: string) => {
     if (reason === "clickaway") {
       return;
     }
@@ -31,7 +70,7 @@ const RoutineDetails = ({ routine, routineIndex, routines, setRoutines }) => {
     setOpenSnackBar(false);
   };
 
-  const scrollToTop = (event) => {
+  const scrollToTop = (event: React.SyntheticEvent) => {
     event.preventDefault();
     window.scrollTo(0, 0);
   };
@@ -56,7 +95,7 @@ const RoutineDetails = ({ routine, routineIndex, routines, setRoutines }) => {
           </Box>
           {routine.workouts.map((workout, workoutIndex) => (
             <WorkoutComponent
-              key={workout._id}
+              key={(workout._id ? workout._id : workoutIndex) as React.Key}
               workout={workout}
               routineIndex={routineIndex}
               workoutIndex={workoutIndex}

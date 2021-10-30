@@ -6,9 +6,34 @@ import CreateWorkout from "./CreateWorkout";
 import RoutineDetails from "./RoutineDetails";
 import customTheme from "../themes/customTheme";
 import { bgColor, textColor } from "../defaults";
+import { ObjectId } from "mongodb";
+
+interface Routine {
+  _id?: ObjectId;
+  name: string;
+  workouts: Workout[];
+}
+
+interface Workout {
+  _id?: ObjectId;
+  day: string;
+  exercises: Exercise[];
+}
+
+interface Exercise {
+  _id?: ObjectId;
+  name: string;
+  sets: WorkSet[];
+}
+
+interface WorkSet {
+  _id?: ObjectId;
+  weight: number;
+  reps: number;
+}
 
 const TrackProgress = () => {
-  const [routines, setRoutines] = useState([]);
+  const [routines, setRoutines] = useState([] as Routine[]);
   const { path } = useRouteMatch();
 
   useEffect(() => {
@@ -48,9 +73,12 @@ const TrackProgress = () => {
               </Box>
             </Box>
             <Box sx={{ display: "flex", flexDirection: "column" }}>
-              {routines.map((routine) => (
+              {routines.map((routine, index) => (
                 <>
-                  <Link key={routine._id} to={`${path}/${routine._id}`}>
+                  <Link
+                    key={(routine._id ? routine._id : index) as React.Key}
+                    to={`${path}/${routine._id}`}
+                  >
                     <Button
                       sx={{ width: "100%", marginBottom: "10px" }}
                       variant="outlined"
@@ -75,7 +103,10 @@ const TrackProgress = () => {
         </ThemeProvider>
       </Route>
       {routines.map((routine, routineIndex) => (
-        <Route key={routine._id} path={`${path}/${routine._id}`}>
+        <Route
+          key={(routine._id ? routine._id : routineIndex) as React.Key}
+          path={`${path}/${routine._id}`}
+        >
           <RoutineDetails
             routine={routine}
             routineIndex={routineIndex}

@@ -19,7 +19,7 @@ const HomePage = () => {
         sx={{
             display: "flex",
             flexDirection: "row",
-            backgroundColor: "yellow",
+            bgcolor: "yellow",
         }}
       >
         <div className="profile-photo"></div>
@@ -32,7 +32,7 @@ const HomePage = () => {
         sx={{
             display: "flex",
             flexDirection: "row",
-            backgroundColor: "green",
+            bgcolor: "green",
         }}
       >
         <h1>Middle container</h1>
@@ -44,7 +44,7 @@ const HomePage = () => {
         sx={{
             display: "flex",
             flexDirection: "row",
-            backgroundColor: "pink",
+            bgcolor: "pink",
         }}
       >
         {/* 3 boxes showing 3 favourite exercises with information: exercise name, best weight, reps */}

@@ -2,8 +2,38 @@ import { TextField, Button, Box, ThemeProvider, Divider } from "@mui/material";
 import { useState } from "react";
 import routineServices from "../services/routineServices";
 import customTheme from "../themes/customTheme";
+import { ObjectId } from "mongodb";
 
-const CreateWorkout = ({ setRoutines, routines }) => {
+interface Props {
+  routines: Routine[];
+  setRoutines: React.Dispatch<React.SetStateAction<Routine[]>>;
+}
+
+interface Routine {
+  _id?: ObjectId;
+  name: string;
+  workouts: Workout[];
+}
+
+interface Workout {
+  _id?: ObjectId;
+  day: string;
+  exercises: Exercise[];
+}
+
+interface Exercise {
+  _id?: ObjectId;
+  name: string;
+  sets: WorkSet[];
+}
+
+interface WorkSet {
+  _id?: ObjectId;
+  weight: number;
+  reps: number;
+}
+
+const CreateWorkout = ({ setRoutines, routines }: Props) => {
   const WORKOUT_NAME = "WORKOUT NAME";
   const WORKOUT_DAY = "WORKOUT DAY";
   const EXERCISE = "EXERCISE";
@@ -29,22 +59,34 @@ const CreateWorkout = ({ setRoutines, routines }) => {
 
   // Input change event
   const handleChange =
-    (setState, inputType, outerIndex, innerIndex) => (event) => {
+    (
+      setState: React.Dispatch<React.SetStateAction<any>>,
+      inputType: string,
+      outerIndex?: number,
+      innerIndex?: number
+    ) =>
+    (event: React.SyntheticEvent) => {
       if (inputType === WORKOUT_NAME) {
-        setState(event.target.value);
-      } else if (inputType === WORKOUT_DAY) {
+        setState((event.target as HTMLInputElement).value);
+      } else if (inputType === WORKOUT_DAY && outerIndex !== undefined) {
         const newWorkouts = [...routine];
-        newWorkouts[outerIndex].day = event.target.value;
+        newWorkouts[outerIndex].day = (event.target as HTMLInputElement).value;
         setState(newWorkouts);
-      } else if (inputType === EXERCISE) {
+      } else if (
+        inputType === EXERCISE &&
+        outerIndex !== undefined &&
+        innerIndex !== undefined
+      ) {
         const newWorkouts = [...routine];
-        newWorkouts[outerIndex].exercises[innerIndex].name = event.target.value;
+        newWorkouts[outerIndex].exercises[innerIndex].name = (
+          event.target as HTMLInputElement
+        ).value;
         setState(newWorkouts);
       }
     };
 
   // Button events
-  const addExercise = (index) => (event) => {
+  const addExercise = (index: number) => (event: React.SyntheticEvent) => {
     event.preventDefault();
     const newWorkouts = [...routine];
     const newExercises = [...newWorkouts[index].exercises];
@@ -54,7 +96,7 @@ const CreateWorkout = ({ setRoutines, routines }) => {
     setRoutine(newWorkouts);
   };
 
-  const addWorkoutDay = (event) => {
+  const addWorkoutDay = (event: React.SyntheticEvent) => {
     event.preventDefault();
     if (routine.length >= 7)
       return window.alert(
@@ -69,7 +111,7 @@ const CreateWorkout = ({ setRoutines, routines }) => {
     ]);
   };
 
-  const createWorkout = (event) => {
+  const createWorkout = (event: React.SyntheticEvent) => {
     event.preventDefault();
     const routineObj = {
       name: routineInput,
@@ -97,7 +139,9 @@ const CreateWorkout = ({ setRoutines, routines }) => {
           },
         ]);
       })
-      .then(window.alert("Successfully Created!"))
+      .then(() => {
+        window.alert("Successfully Created!");
+      })
       .catch((e) => console.error(e));
   };
 
