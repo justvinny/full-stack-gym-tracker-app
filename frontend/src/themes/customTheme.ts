@@ -1,4 +1,4 @@
-import { createTheme } from "@material-ui/core/styles";
+import { createTheme } from "@mui/material/styles";
 import { bgColor } from "../defaults";
 
 const myTheme = createTheme({

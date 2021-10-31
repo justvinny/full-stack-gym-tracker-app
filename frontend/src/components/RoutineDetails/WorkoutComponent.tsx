@@ -72,7 +72,9 @@ const WorkoutComponent = ({
         component={Paper}
         sx={{
           border: "1px solid black",
-          marginBottom: 10,
+          marginBottom: "20px",
+          minWidth: "400px",
+          maxWidth: { lg: "49%" },
         }}
       >
         <Box
@@ -101,7 +103,11 @@ const WorkoutComponent = ({
           <TableBody>
             {workout.exercises.map((exercise, exerciseIndex) => (
               <ExerciseComponent
-                key={(exercise._id ? exercise._id : "new" + exerciseIndex) as React.Key}
+                key={
+                  (exercise._id
+                    ? exercise._id
+                    : "new" + exerciseIndex) as React.Key
+                }
                 routineIndex={routineIndex}
                 workoutIndex={workoutIndex}
                 exerciseIndex={exerciseIndex}

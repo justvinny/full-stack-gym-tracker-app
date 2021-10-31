@@ -25,11 +25,11 @@ const SetComponent = ({ set, deleteSet, setIndex, editClick }: Props) => {
             alignItems: "center",
           }}
         >
-          <IconButton size="small" onClick={editClick(set, setIndex)}>
-            <Edit fontSize="small" color="primary" />
+          <IconButton size="small" color="primary" onClick={editClick(set, setIndex)}>
+            <Edit fontSize="small" color="inherit" />
           </IconButton>
-          <IconButton size="small" onClick={deleteSet(setIndex)}>
-            <Delete fontSize="small" color="primary" />
+          <IconButton size="small" color="primary" onClick={deleteSet(setIndex)}>
+            <Delete fontSize="small" color="inherit" />
           </IconButton>
         </Box>
       </TableCell>

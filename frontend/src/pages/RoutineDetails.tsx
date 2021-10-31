@@ -54,7 +54,13 @@ const RoutineDetails = ({
   return (
     <>
       <ThemeProvider theme={customTheme.myTheme}>
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            width: "90vw",
+          }}
+        >
           <Box
             sx={{
               display: "flex",
@@ -69,16 +75,25 @@ const RoutineDetails = ({
               Save Changes
             </Button>
           </Box>
-          {routine.workouts.map((workout, workoutIndex) => (
-            <WorkoutComponent
-              key={(workout._id ? workout._id : workoutIndex) as React.Key}
-              workout={workout}
-              routineIndex={routineIndex}
-              workoutIndex={workoutIndex}
-              routines={routines}
-              setRoutines={setRoutines}
-            />
-          ))}
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              justifyContent: "space-between",
+            }}
+          >
+            {routine.workouts.map((workout, workoutIndex) => (
+              <WorkoutComponent
+                key={(workout._id ? workout._id : workoutIndex) as React.Key}
+                workout={workout}
+                routineIndex={routineIndex}
+                workoutIndex={workoutIndex}
+                routines={routines}
+                setRoutines={setRoutines}
+              />
+            ))}
+          </Box>
         </Box>
         <Fab
           color="primary"

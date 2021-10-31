@@ -94,8 +94,8 @@ const ExerciseComponent = ({
     <>
       <TableRow>
         <TableCell>
-          <IconButton size="small" onClick={deleteExercise}>
-            <Delete fontSize="small" color="primary" />
+          <IconButton size="small" color="primary" onClick={deleteExercise}>
+            <Delete fontSize="small" color="inherit" />
           </IconButton>
           {exercise.name}
         </TableCell>
@@ -110,11 +110,11 @@ const ExerciseComponent = ({
               alignItems: "center",
             }}
           >
-            <IconButton size="small" onClick={editClick(exercise.sets[0], 0)}>
-              <Edit fontSize="small" color="primary" />
+            <IconButton size="small" color="primary" onClick={editClick(exercise.sets[0], 0)}>
+              <Edit fontSize="small" color="inherit" />
             </IconButton>
-            <IconButton size="small" onClick={deleteSet(0)}>
-              <Delete fontSize="small" color="primary" />
+            <IconButton size="small" color="primary" onClick={deleteSet(0)}>
+              <Delete fontSize="small" color="inherit"/>
             </IconButton>
           </Box>
         </TableCell>
