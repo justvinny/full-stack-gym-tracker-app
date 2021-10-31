@@ -8,20 +8,10 @@ import { ExpandMore } from "@material-ui/icons";
 import { bgColor, textColor } from "../../defaults";
 import "./RoutineCard.css";
 import DetailedRoutine from "./DetailedRoutine";
+import { RoutineTemplate } from "../../types";
 
 interface Props {
   routine: RoutineTemplate;
-}
-
-interface RoutineTemplate {
-  name: string,
-  content: Day[]
-}
-
-interface Day {
-  day: number,
-  name: string,
-  exercises: string[]
 }
 
 const RoutineCard = ({ routine }: Props) => {

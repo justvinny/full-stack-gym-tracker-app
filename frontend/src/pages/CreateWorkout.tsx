@@ -2,35 +2,11 @@ import { TextField, Button, Box, ThemeProvider, Divider } from "@mui/material";
 import { useState } from "react";
 import routineServices from "../services/routineServices";
 import customTheme from "../themes/customTheme";
-import { ObjectId } from "mongodb";
+import { Routine } from "../types";
 
 interface Props {
   routines: Routine[];
   setRoutines: React.Dispatch<React.SetStateAction<Routine[]>>;
-}
-
-interface Routine {
-  _id?: ObjectId;
-  name: string;
-  workouts: Workout[];
-}
-
-interface Workout {
-  _id?: ObjectId;
-  day: string;
-  exercises: Exercise[];
-}
-
-interface Exercise {
-  _id?: ObjectId;
-  name: string;
-  sets: WorkSet[];
-}
-
-interface WorkSet {
-  _id?: ObjectId;
-  weight: number;
-  reps: number;
 }
 
 const CreateWorkout = ({ setRoutines, routines }: Props) => {

@@ -9,7 +9,7 @@ import {
 import { Delete, Edit } from "@mui/icons-material";
 import React, { SyntheticEvent, useState } from "react";
 import EditSetDialog from "./EditSetDialog";
-import {ObjectId} from "mongodb";
+import { Routine, Exercise, WorkSet } from "../../types";
 
 interface Props {
   exercise: Exercise,
@@ -18,30 +18,6 @@ interface Props {
   exerciseIndex: number,
   routines: Routine[],
   setRoutines: React.Dispatch<React.SetStateAction<Routine[]>>,
-}
-
-interface Routine {
-  _id?: ObjectId,
-  name: string,
-  workouts: Workout[]
-}
-
-interface Workout {
-  _id?: ObjectId,
-  day: string,
-  exercises: Exercise[]
-}
-
-interface Exercise {
-  _id?: ObjectId,
-  name: string,
-  sets: WorkSet[]
-}
-
-interface WorkSet {
-  _id?: ObjectId,
-  weight: number,
-  reps: number
 }
 
 const ExerciseComponent = ({

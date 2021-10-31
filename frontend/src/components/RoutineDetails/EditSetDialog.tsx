@@ -6,17 +6,14 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import {SyntheticEvent} from "react";
+import { WorkSet } from "../../types";
 
-interface WorkingSet {
-  weight: number,
-  reps: number
-}
 
 interface Props {
   handleClose(event: SyntheticEvent): void,
   open: boolean,
-  dialogSet: WorkingSet,
-  setDialogSet: React.Dispatch<React.SetStateAction<WorkingSet>>,
+  dialogSet: WorkSet,
+  setDialogSet: React.Dispatch<React.SetStateAction<WorkSet>>,
   handleSave(currentSetIndex: number): (event: SyntheticEvent) => void,
   currentSetIndex: number
 }

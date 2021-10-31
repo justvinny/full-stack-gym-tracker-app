@@ -1,19 +1,13 @@
 import { Box, TableRow, TableCell, IconButton } from "@mui/material";
 import { Delete, Edit } from "@mui/icons-material";
 import { SyntheticEvent } from "react";
-import { ObjectId } from "mongodb";
+import { WorkSet } from "../../types";
 
 interface Props {
   set: WorkSet;
   deleteSet(setIndex: number): (event: SyntheticEvent) => void;
   setIndex: number;
   editClick(set: WorkSet, setIndex: number): (event: SyntheticEvent) => void;
-}
-
-interface WorkSet {
-  _id?: ObjectId;
-  weight: number;
-  reps: number;
 }
 
 const SetComponent = ({ set, deleteSet, setIndex, editClick }: Props) => {

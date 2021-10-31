@@ -6,31 +6,7 @@ import CreateWorkout from "./CreateWorkout";
 import RoutineDetails from "./RoutineDetails";
 import customTheme from "../themes/customTheme";
 import { bgColor, textColor } from "../defaults";
-import { ObjectId } from "mongodb";
-
-interface Routine {
-  _id?: ObjectId;
-  name: string;
-  workouts: Workout[];
-}
-
-interface Workout {
-  _id?: ObjectId;
-  day: string;
-  exercises: Exercise[];
-}
-
-interface Exercise {
-  _id?: ObjectId;
-  name: string;
-  sets: WorkSet[];
-}
-
-interface WorkSet {
-  _id?: ObjectId;
-  weight: number;
-  reps: number;
-}
+import { Routine } from "../types";
 
 const TrackProgress = () => {
   const [routines, setRoutines] = useState([] as Routine[]);

@@ -11,37 +11,13 @@ import { Close, ArrowUpward } from "@material-ui/icons";
 import routineServices from "../services/routineServices";
 import React, { useState } from "react";
 import customTheme from "../themes/customTheme";
-import { ObjectId } from "mongodb";
+import { Routine } from "../types";
 
 interface Props {
   routine: Routine;
   routineIndex: number;
   routines: Routine[];
   setRoutines: React.Dispatch<React.SetStateAction<Routine[]>>;
-}
-
-interface Routine {
-  _id?: ObjectId;
-  name: string;
-  workouts: Workout[];
-}
-
-interface Workout {
-  _id?: ObjectId;
-  day: string;
-  exercises: Exercise[];
-}
-
-interface Exercise {
-  _id?: ObjectId;
-  name: string;
-  sets: WorkSet[];
-}
-
-interface WorkSet {
-  _id?: ObjectId;
-  weight: number;
-  reps: number;
 }
 
 const RoutineDetails = ({

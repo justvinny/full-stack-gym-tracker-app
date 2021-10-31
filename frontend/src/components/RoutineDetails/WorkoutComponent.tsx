@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import React, { SyntheticEvent, useState } from "react";
 import NewExerciseDialog from "./NewExerciseDialog";
-import { ObjectId } from "mongodb";
+import { Workout, Routine } from "../../types";
 
 interface Props {
   workout: Workout;
@@ -20,30 +20,6 @@ interface Props {
   workoutIndex: number;
   routines: Routine[];
   setRoutines: React.Dispatch<React.SetStateAction<Routine[]>>;
-}
-
-interface Routine {
-  _id?: ObjectId;
-  name: string;
-  workouts: Workout[];
-}
-
-interface Workout {
-  _id?: ObjectId;
-  day: string;
-  exercises: Exercise[];
-}
-
-interface Exercise {
-  _id?: ObjectId;
-  name: string;
-  sets: WorkSet[];
-}
-
-interface WorkSet {
-  _id?: ObjectId;
-  weight: number;
-  reps: number;
 }
 
 const WorkoutComponent = ({
