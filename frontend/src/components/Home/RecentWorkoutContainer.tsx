@@ -1,15 +1,18 @@
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 
 const RecentWorkoutContainer = () => (
-  <Box
+  <Grid
+    item
+    xs={12}
+    md={3}
     sx={{
-      display: "flex",
-      flexDirection: "row",
       bgcolor: "cyan",
+      padding: "16px",
+      flexGrow: 1,
     }}
   >
-    Recent Workout Container 
-  </Box>
+    Recent Workout Container
+  </Grid>
 );
 
 export default RecentWorkoutContainer;

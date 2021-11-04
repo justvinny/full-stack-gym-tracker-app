@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import InfoContainer from "../components/Home/InfoContainer";
 import WeightContainer from "../components/Home/WeightContainer";
 import ExercisesContainer from "../components/Home/ExercisesContainer";
@@ -6,25 +6,29 @@ import RecentWorkoutContainer from "../components/Home/RecentWorkoutContainer";
 
 const HomePage = () => {
   return (
-    <Box
+    <Grid
+      container
+      spacing={2}
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "stretch",
+        alignItems: "center",
         width: "90vw",
         bgcolor: "#fff",
+        maxWidth: { xs: "650px", md: "950px" },
+        marginTop: "8px",
       }}
     >
       <InfoContainer
         name="Vinson Beduya"
         age={21}
         height={180}
-        aboutMe="I love doing programming, reading fantasy novels, going to the gym, and hot chicks"
+        aboutMe="I love doing programming, reading fantasy novels, going to the gym, and hfasfasfasfasasfas"
       />
-      <WeightContainer />
-      <ExercisesContainer />
+      <Grid item xs={12} md={9} sx={{ padding: "16px" }}>
+        <WeightContainer />
+        <ExercisesContainer />
+      </Grid>
       <RecentWorkoutContainer />
-    </Box>
+    </Grid>
   );
 };
 

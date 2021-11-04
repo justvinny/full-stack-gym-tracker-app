@@ -1,17 +1,40 @@
-import { Box } from "@mui/material";
-import WeightCard from "./WeightCard";
+import { Box, Button } from "@mui/material";
+import DashboardGauge from "./DashboardGauge";
 
 const WeightContainer = () => (
   <Box
     sx={{
       display: "flex",
-      flexDirection: { xs: "column", md: "row" },
+      flexDirection: "column",
       alignItems: "center",
+      marginBottom: {md: "8px"}
     }}
   >
-    <WeightCard weight={110} label="Start Weight" />
-    <WeightCard weight={100} label="Current Weight" />
-    <WeightCard weight={90} label="Goal Weight" />
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignSelf: "stretch",
+        alignItems: "center",
+      }}
+    >
+      <Box>Weight Goals (kg)</Box>
+      <Button variant="text" style={{ textTransform: "none" }}>
+        Edit
+      </Button>
+    </Box>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: { xs: "column", sm: "row" },
+        alignItems: "center",
+      }}
+    >
+      <DashboardGauge weight={110} label="Start Weight" />
+      <DashboardGauge weight={100} label="Current Weight" />
+      <DashboardGauge weight={90} label="Goal Weight" />
+    </Box>
   </Box>
 );
 
