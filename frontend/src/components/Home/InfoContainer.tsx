@@ -15,6 +15,8 @@ const InfoContainer = ({ name, age, height, aboutMe }: Props) => (
     xs={12}
     sx={{
       padding: "16px",
+      boxShadow: "0px 0px 5px 2px",
+      marginBottom: "12px",
     }}
   >
     <ContainerHeading label="Basic Information" />

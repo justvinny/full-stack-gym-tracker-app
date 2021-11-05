@@ -7,7 +7,10 @@ const ExercisesContainer = () => (
     sx={{
       display: "flex",
       flexDirection: "column",
+      boxShadow: "0px 0px 5px 2px",
       alignItems: "center",
+      padding: "16px",
+      marginBottom: "12px",
     }}
   >
     <ContainerHeading label="Best Exercises (kg)" />

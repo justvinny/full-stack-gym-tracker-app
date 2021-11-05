@@ -7,7 +7,9 @@ const WeightContainer = () => (
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      marginBottom: {md: "8px"}
+      boxShadow: "0px 0px 5px 2px",
+      padding: "16px",
+      marginBottom: "12px",
     }}
   >
     <Box
