@@ -48,7 +48,7 @@ const InfoContainer = ({ name, age, height, aboutMe }: Props) => (
         <Box>Name: {name}</Box>
         <Box>Age: {age}</Box>
         <Box>Height: {height}cm</Box>
-        <Box>About Me: {aboutMe}</Box>
+        <Box sx={{ textAlign: "justify" }}>About Me: {aboutMe}</Box>
       </Box>
     </Box>
   </Grid>

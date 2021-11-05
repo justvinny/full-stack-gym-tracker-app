@@ -1,8 +1,17 @@
 import { Box } from "@mui/material";
 import DashboardGauge from "./DashboardGauge";
 import ContainerHeading from "./ContainerHeading";
+import { Exercise } from "../../types";
 
-const ExercisesContainer = () => (
+interface Props {
+  featuredExercises: [
+    Exercise | undefined,
+    Exercise | undefined,
+    Exercise | undefined
+  ];
+}
+
+const ExercisesContainer = ({ featuredExercises }: Props) => (
   <Box
     sx={{
       display: "flex",
@@ -19,11 +28,20 @@ const ExercisesContainer = () => (
         display: "flex",
         flexDirection: { xs: "column", sm: "row" },
         alignItems: "center",
-    }}
+      }}
     >
-      <DashboardGauge weight={130} label="Bench Press" reps={12} />
-      <DashboardGauge weight={0} label="Pull Up" reps={20} />
-      <DashboardGauge weight={200} label="Deadlift" reps={5} />
+      {featuredExercises.map((exercise) => {
+        if (exercise !== undefined) {
+          return (
+            <DashboardGauge
+              weight={exercise.sets[exercise.sets.length - 1].weight}
+              label={exercise.name}
+              reps={exercise.sets[exercise.sets.length - 1].reps}
+            />
+          );
+        }
+        return <DashboardGauge />;
+      })}
     </Box>
   </Box>
 );

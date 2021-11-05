@@ -1,7 +1,13 @@
 import { Box, Button } from "@mui/material";
 import DashboardGauge from "./DashboardGauge";
 
-const WeightContainer = () => (
+interface Props {
+  startWeight: number;
+  currentWeight: number;
+  goalWeight: number;
+}
+
+const WeightContainer = ({ startWeight, currentWeight, goalWeight }: Props) => (
   <Box
     sx={{
       display: "flex",
@@ -33,9 +39,9 @@ const WeightContainer = () => (
         alignItems: "center",
       }}
     >
-      <DashboardGauge weight={110} label="Start Weight" />
-      <DashboardGauge weight={100} label="Current Weight" />
-      <DashboardGauge weight={90} label="Goal Weight" />
+      <DashboardGauge weight={startWeight} label="Start Weight" />
+      <DashboardGauge weight={currentWeight} label="Current Weight" />
+      <DashboardGauge weight={goalWeight} label="Goal Weight" />
     </Box>
   </Box>
 );
