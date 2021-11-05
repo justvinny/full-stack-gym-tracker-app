@@ -1,6 +1,7 @@
 import { Box, Grid, Avatar } from "@mui/material";
 import ContainerHeading from "./ContainerHeading";
 import { bgColor } from "../../defaults";
+import { getInitials } from "../../utils";
 
 interface Props {
   name: string;
@@ -10,22 +11,6 @@ interface Props {
 }
 
 const InfoContainer = ({ name, age, height, aboutMe }: Props) => {
-  const getInitials = () => {
-    const nameArr = name.split(" ");
-
-    switch (nameArr.length) {
-      case 0: {
-        return "A";
-      }
-      case 1: {
-        return nameArr[0].charAt(0);
-      }
-      default: {
-        return nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0);
-      }
-    }
-  };
-
   return (
     <Grid
       item
@@ -52,7 +37,7 @@ const InfoContainer = ({ name, age, height, aboutMe }: Props) => {
             bgcolor: bgColor,
           }}
         >
-          {getInitials()}
+          {getInitials(name)}
         </Avatar>
         <Box
           sx={{
