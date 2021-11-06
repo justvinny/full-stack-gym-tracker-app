@@ -2,9 +2,10 @@ import { Box, Button } from "@mui/material";
 
 interface Props {
   label: string;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ContainerHeading = ({ label }: Props) => (
+const ContainerHeading = ({ label, setOpen }: Props) => (
   <Box
     sx={{
       display: "flex",
@@ -15,7 +16,7 @@ const ContainerHeading = ({ label }: Props) => (
     }}
   >
     <Box>{label}</Box>
-    <Button variant="text" style={{ textTransform: "none" }}>
+    <Button variant="text" style={{ textTransform: "none" }} onClick={() => setOpen(true)}>
       Edit
     </Button>
   </Box>

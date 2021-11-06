@@ -9,9 +9,10 @@ interface Props {
     Exercise | undefined,
     Exercise | undefined
   ];
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ExercisesContainer = ({ featuredExercises }: Props) => (
+const ExercisesContainer = ({ featuredExercises, setOpen }: Props) => (
   <Box
     sx={{
       display: "flex",
@@ -22,7 +23,7 @@ const ExercisesContainer = ({ featuredExercises }: Props) => (
       marginBottom: "12px",
     }}
   >
-    <ContainerHeading label="Best Exercises (kg)" />
+    <ContainerHeading label="Best Exercises (kg)" setOpen={setOpen} />
     <Box
       sx={{
         display: "flex",

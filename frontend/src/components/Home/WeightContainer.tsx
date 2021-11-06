@@ -1,13 +1,15 @@
 import { Box, Button } from "@mui/material";
 import DashboardGauge from "./DashboardGauge";
+import ContainerHeading from "./ContainerHeading";
 
 interface Props {
   startWeight: number;
   currentWeight: number;
   goalWeight: number;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const WeightContainer = ({ startWeight, currentWeight, goalWeight }: Props) => (
+const WeightContainer = ({ startWeight, currentWeight, goalWeight, setOpen }: Props) => (
   <Box
     sx={{
       display: "flex",
@@ -18,20 +20,7 @@ const WeightContainer = ({ startWeight, currentWeight, goalWeight }: Props) => (
       marginBottom: "12px",
     }}
   >
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignSelf: "stretch",
-        alignItems: "center",
-      }}
-    >
-      <Box>Weight Goals (kg)</Box>
-      <Button variant="text" style={{ textTransform: "none" }}>
-        Edit
-      </Button>
-    </Box>
+    <ContainerHeading label="Weight Goals (kg)" setOpen={setOpen} />
     <Box
       sx={{
         display: "flex",

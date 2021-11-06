@@ -8,9 +8,10 @@ interface Props {
   age: number;
   height: number;
   aboutMe: string;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const InfoContainer = ({ name, age, height, aboutMe }: Props) => {
+const InfoContainer = ({ name, age, height, aboutMe, setOpen }: Props) => {
   return (
     <Grid
       item
@@ -21,7 +22,7 @@ const InfoContainer = ({ name, age, height, aboutMe }: Props) => {
         marginBottom: "12px",
       }}
     >
-      <ContainerHeading label="Basic Information" />
+      <ContainerHeading label="Basic Information" setOpen={setOpen} />
       <Box
         sx={{
           display: "flex",

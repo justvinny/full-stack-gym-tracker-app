@@ -1,15 +1,18 @@
-export const getInitials = (name: string): string => {
-  const nameArr = name.split(" ");
+import React from "react";
 
-  switch (nameArr.length) {
-    case 0: {
-      return "A";
-    }
-    case 1: {
-      return nameArr[0].charAt(0);
-    }
-    default: {
-      return nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0);
-    }
+export const getInitials = (name: string): string => {
+  if (name.length === 0) return "-";
+
+  const nameArr = name.split(" ");
+  if (nameArr.length === 1) {
+    return nameArr[0].charAt(0);
+  } else {
+    return nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0);
   }
 };
+
+export const handleInputChange =
+  (setState: React.Dispatch<React.SetStateAction<any>>) =>
+  (event: React.SyntheticEvent) => {
+    setState((event.target as HTMLInputElement).value);
+  };

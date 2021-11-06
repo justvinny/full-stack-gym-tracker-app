@@ -5,6 +5,9 @@ import WeightContainer from "../components/Home/WeightContainer";
 import ExercisesContainer from "../components/Home/ExercisesContainer";
 import RecentWorkoutContainer from "../components/Home/RecentWorkoutContainer";
 import { Workout, Exercise } from "../types";
+import EditInfoDialog from "../components/Home/Dialoogs/EditInfoDialog";
+import EditWeightDialog from "../components/Home/Dialoogs/EditWeightDialog";
+import EditFeaturedDialog from "../components/Home/Dialoogs/EditFeaturedDialog";
 
 const HomePage = () => {
   // Basic Info
@@ -28,30 +31,66 @@ const HomePage = () => {
   // Latest workout
   const [lastWorkout, setLastWorkout] = useState(mockWorkout);
 
+  // Modal
+  const [openEditInfo, setOpenEditInfo] = useState(false);
+  const [openEditWeight, setOpenEditWeight] = useState(false);
+  const [openEditFeatured, setOpenEditFeatured] = useState(false);
+
   return (
-    <Grid
-      container
-      spacing={2}
-      sx={{
-        alignItems: "center",
-        width: "90vw",
-        bgcolor: "#fff",
-        maxWidth: { xs: "650px", lg: "1100px" },
-        marginTop: "8px",
-        marginBottom: "8px",
-      }}
-    >
-      <InfoContainer name={name} age={age} height={height} aboutMe={aboutMe} />
-      <Grid item xs={12} lg={7} sx={{ padding: "0px !important" }}>
-        <WeightContainer
-          startWeight={startWeight}
-          currentWeight={currentWeight}
-          goalWeight={goalWeight}
+    <>
+      <Grid
+        container
+        spacing={2}
+        sx={{
+          alignItems: "center",
+          width: "90vw",
+          bgcolor: "#fff",
+          maxWidth: { xs: "650px", lg: "1100px" },
+          marginTop: "8px",
+          marginBottom: "8px",
+          marginLeft: "0px",
+        }}
+      >
+        <InfoContainer
+          name={name}
+          age={age}
+          height={height}
+          aboutMe={aboutMe}
+          setOpen={setOpenEditInfo}
         />
-        <ExercisesContainer featuredExercises={featuredExercises} />
+        <Grid item xs={12} lg={7} sx={{ padding: "0px !important" }}>
+          <WeightContainer
+            startWeight={startWeight}
+            currentWeight={currentWeight}
+            goalWeight={goalWeight}
+            setOpen={setOpenEditWeight}
+          />
+          <ExercisesContainer
+            featuredExercises={featuredExercises}
+            setOpen={setOpenEditFeatured}
+          />
+        </Grid>
+        <RecentWorkoutContainer lastWorkout={lastWorkout} />
       </Grid>
-      <RecentWorkoutContainer lastWorkout={lastWorkout} />
-    </Grid>
+      {/* Edit Dialogs */}
+      <EditInfoDialog
+        open={openEditInfo}
+        setOpen={setOpenEditInfo}
+        name={name}
+        age={age}
+        height={height}
+        aboutMe={aboutMe}
+        setName={setName}
+        setAge={setAge}
+        setHeight={setHeight}
+        setAboutMe={setAboutMe}
+      />
+      <EditWeightDialog open={openEditWeight} setOpen={setOpenEditWeight} />
+      <EditFeaturedDialog
+        open={openEditFeatured}
+        setOpen={setOpenEditFeatured}
+      />
+    </>
   );
 };
 
