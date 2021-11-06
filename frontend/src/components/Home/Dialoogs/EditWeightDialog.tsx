@@ -6,11 +6,33 @@ import { handleInputChange } from "../../../utils";
 interface Props {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  startWeight: number;
+  currentWeight: number;
+  goalWeight: number;
+  setStartWeight: React.Dispatch<React.SetStateAction<number>>;
+  setCurrentWeight: React.Dispatch<React.SetStateAction<number>>;
+  setGoalWeight: React.Dispatch<React.SetStateAction<number>>;
 }
-const EditWeightDialog = ({ open, setOpen }: Props) => {
-  const [startWeightInput, setStartWeightInput] = useState();
-  const [currentWeightInput, setCurrentWeightInput] = useState();
-  const [goalWeightInput, setGoalWeightInput] = useState();
+const EditWeightDialog = ({
+  open,
+  setOpen,
+  startWeight,
+  currentWeight,
+  goalWeight,
+  setStartWeight,
+  setCurrentWeight,
+  setGoalWeight,
+}: Props) => {
+  const [startWeightInput, setStartWeightInput] = useState(startWeight);
+  const [currentWeightInput, setCurrentWeightInput] = useState(currentWeight);
+  const [goalWeightInput, setGoalWeightInput] = useState(goalWeight);
+
+  const save = () => {
+    setStartWeight(startWeightInput);
+    setCurrentWeight(currentWeightInput);
+    setGoalWeight(goalWeightInput);
+    setOpen(false);
+  };
 
   return (
     <Dialog open={open} onClose={() => setOpen(false)}>
@@ -41,7 +63,9 @@ const EditWeightDialog = ({ open, setOpen }: Props) => {
           value={goalWeightInput}
           onChange={handleInputChange(setGoalWeightInput)}
         />
-        <Button variant="contained">Save</Button>
+        <Button variant="contained" onClick={save}>
+          Save
+        </Button>
       </Box>
     </Dialog>
   );

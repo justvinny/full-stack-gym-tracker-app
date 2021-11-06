@@ -85,7 +85,16 @@ const HomePage = () => {
         setHeight={setHeight}
         setAboutMe={setAboutMe}
       />
-      <EditWeightDialog open={openEditWeight} setOpen={setOpenEditWeight} />
+      <EditWeightDialog
+        open={openEditWeight}
+        setOpen={setOpenEditWeight}
+        startWeight={startWeight}
+        currentWeight={currentWeight}
+        goalWeight={goalWeight}
+        setStartWeight={setStartWeight}
+        setCurrentWeight={setCurrentWeight}
+        setGoalWeight={setGoalWeight}
+      />
       <EditFeaturedDialog
         open={openEditFeatured}
         setOpen={setOpenEditFeatured}
