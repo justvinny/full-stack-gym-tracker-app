@@ -10,7 +10,7 @@ import {
   Box,
   Button,
 } from "@mui/material";
-import React, { SyntheticEvent, useState } from "react";
+import React, { SyntheticEvent, ChangeEvent, useState } from "react";
 import NewExerciseDialog from "./NewExerciseDialog";
 import { Workout, Routine } from "../../types";
 
@@ -37,8 +37,8 @@ const WorkoutComponent = ({
     setNewExericseOpen(true);
   };
 
-  const handleChange = (event: SyntheticEvent) => {
-    setExerciseField((event.target as HTMLInputElement).value);
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setExerciseField(event.target.value);
   };
 
   const handleClose = (event: SyntheticEvent) => {

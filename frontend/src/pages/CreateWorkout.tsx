@@ -1,5 +1,5 @@
 import { TextField, Button, Box, ThemeProvider, Divider } from "@mui/material";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import routineServices from "../services/routineServices";
 import customTheme from "../themes/customTheme";
 import { Routine } from "../types";
@@ -41,12 +41,12 @@ const CreateWorkout = ({ setRoutines, routines }: Props) => {
       outerIndex?: number,
       innerIndex?: number
     ) =>
-    (event: React.SyntheticEvent) => {
+    (event: ChangeEvent<HTMLInputElement>) => {
       if (inputType === WORKOUT_NAME) {
-        setState((event.target as HTMLInputElement).value);
+        setState(event.target.value);
       } else if (inputType === WORKOUT_DAY && outerIndex !== undefined) {
         const newWorkouts = [...routine];
-        newWorkouts[outerIndex].day = (event.target as HTMLInputElement).value;
+        newWorkouts[outerIndex].day = event.target.value;
         setState(newWorkouts);
       } else if (
         inputType === EXERCISE &&
@@ -54,9 +54,7 @@ const CreateWorkout = ({ setRoutines, routines }: Props) => {
         innerIndex !== undefined
       ) {
         const newWorkouts = [...routine];
-        newWorkouts[outerIndex].exercises[innerIndex].name = (
-          event.target as HTMLInputElement
-        ).value;
+        newWorkouts[outerIndex].exercises[innerIndex].name = event.target.value;
         setState(newWorkouts);
       }
     };

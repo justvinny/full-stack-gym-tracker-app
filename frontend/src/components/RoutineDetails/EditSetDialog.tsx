@@ -1,21 +1,15 @@
-import {
-  Dialog,
-  DialogTitle,
-  TextField,
-  Button,
-} from "@mui/material";
+import { Dialog, DialogTitle, TextField, Button } from "@mui/material";
 import { Box } from "@mui/system";
-import {SyntheticEvent} from "react";
+import { SyntheticEvent, ChangeEvent } from "react";
 import { WorkSet } from "../../types";
 
-
 interface Props {
-  handleClose(event: SyntheticEvent): void,
-  open: boolean,
-  dialogSet: WorkSet,
-  setDialogSet: React.Dispatch<React.SetStateAction<WorkSet>>,
-  handleSave(currentSetIndex: number): (event: SyntheticEvent) => void,
-  currentSetIndex: number
+  handleClose(event: SyntheticEvent): void;
+  open: boolean;
+  dialogSet: WorkSet;
+  setDialogSet: React.Dispatch<React.SetStateAction<WorkSet>>;
+  handleSave(currentSetIndex: number): (event: SyntheticEvent) => void;
+  currentSetIndex: number;
 }
 
 const EditSetDialog = ({
@@ -29,13 +23,14 @@ const EditSetDialog = ({
   const WEIGHT = "WEIGHT";
   const REPS = "REPS";
 
-  const handleChange = (type: string) => (event: SyntheticEvent) => {
-    if (type === WEIGHT) {
-      setDialogSet({ ...dialogSet, weight: Number((event.target as HTMLInputElement).value) });
-    } else if (type === REPS) {
-      setDialogSet({ ...dialogSet, reps: Number((event.target as HTMLInputElement).value) });
-    }
-  };
+  const handleChange =
+    (type: string) => (event: ChangeEvent<HTMLInputElement>) => {
+      if (type === WEIGHT) {
+        setDialogSet({ ...dialogSet, weight: Number(event.target.value) });
+      } else if (type === REPS) {
+        setDialogSet({ ...dialogSet, reps: Number(event.target.value) });
+      }
+    };
 
   return (
     <Dialog open={open} onClose={handleClose}>
@@ -77,7 +72,7 @@ const EditSetDialog = ({
             marginTop: 10,
             alignSelf: "end",
           }}
-          onClick={handleSave(currentSetIndex)} 
+          onClick={handleSave(currentSetIndex)}
         >
           Save
         </Button>

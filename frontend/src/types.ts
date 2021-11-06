@@ -9,7 +9,7 @@ export interface User {
   startWeight: number;
   currentWeight: number;
   goalWeight: number;
-  featuredExercise: [Exercise | undefined, Exercise | undefined, Exercise | undefined];
+  featuredExercises: FeaturedExercises;
   routines: Routine[];
 }
 
@@ -30,6 +30,8 @@ export interface Exercise {
   name: string;
   sets: WorkSet[];
 }
+
+export type FeaturedExercises = [Exercise | undefined, Exercise | undefined, Exercise | undefined];
 
 export interface WorkSet {
   _id?: ObjectId;

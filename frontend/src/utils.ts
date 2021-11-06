@@ -13,6 +13,6 @@ export const getInitials = (name: string): string => {
 
 export const handleInputChange =
   (setState: React.Dispatch<React.SetStateAction<any>>) =>
-  (event: React.SyntheticEvent) => {
-    setState((event.target as HTMLInputElement).value);
+  (event: React.ChangeEvent<HTMLInputElement>) => {
+    setState(event.target.value);
   };
