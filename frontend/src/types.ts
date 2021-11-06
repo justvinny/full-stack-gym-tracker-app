@@ -1,5 +1,18 @@
 import { ObjectId } from "mongodb";
 
+export interface User {
+  _id?: ObjectId;
+  name: string;
+  age: number;
+  height: number;
+  aboutMe: string;
+  startWeight: number;
+  currentWeight: number;
+  goalWeight: number;
+  featuredExercise: [Exercise | undefined, Exercise | undefined, Exercise | undefined];
+  routines: Routine[];
+}
+
 export interface Routine {
   _id?: ObjectId;
   name: string;
