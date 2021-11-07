@@ -71,7 +71,7 @@ const WorkoutComponent = ({
       <TableContainer
         component={Paper}
         sx={{
-          border: "1px solid black",
+          boxShadow: "0px 0px 5px 2px",
           marginBottom: "20px",
           minWidth: "400px",
           maxWidth: { lg: "49%" },

@@ -41,7 +41,7 @@ const NewExerciseDialog = ({
         <Button
           variant="contained"
           color="primary"
-          sx={{ marginTop: 8 }}
+          sx={{ marginTop: "8px" }}
           onClick={handleSave}
         >
           Create

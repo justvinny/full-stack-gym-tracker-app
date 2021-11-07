@@ -40,7 +40,7 @@ const EditSetDialog = ({
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          padding: 20,
+          padding: "20px",
         }}
       >
         <Box
@@ -55,7 +55,7 @@ const EditSetDialog = ({
             value={dialogSet.weight}
             onChange={handleChange(WEIGHT)}
             label="Weight"
-            sx={{ marginRight: 10 }}
+            sx={{ marginRight: "10px" }}
           ></TextField>
           <TextField
             type="number"
@@ -69,7 +69,7 @@ const EditSetDialog = ({
           variant="contained"
           color="primary"
           sx={{
-            marginTop: 10,
+            marginTop: "10px",
             alignSelf: "end",
           }}
           onClick={handleSave(currentSetIndex)}
