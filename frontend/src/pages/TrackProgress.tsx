@@ -23,7 +23,14 @@ const TrackProgress = () => {
     <Switch>
       <Route exact path={`${path}`}>
         <ThemeProvider theme={customTheme.myTheme}>
-          <Box sx={{ display: "flex", flexDirection: "column", width: 650 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              width: "90vw",
+              maxWidth: "650px",
+            }}
+          >
             <Box
               sx={{
                 display: "flex",

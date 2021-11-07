@@ -120,96 +120,93 @@ const CreateWorkout = ({ setRoutines, routines }: Props) => {
   };
 
   return (
-    <div>
-      <ThemeProvider theme={customTheme.myTheme}>
-        <form>
+    <ThemeProvider theme={customTheme.myTheme}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "stretch",
+          width: "90vw",
+          maxWidth: "650px",
+        }}
+      >
+        <TextField
+          label="New Workout Name"
+          value={routineInput}
+          onChange={handleChange(setRoutineInput, WORKOUT_NAME)}
+          variant="outlined"
+          sx={{ margin: "4px 0px" }}
+        />
+        {routine.map((workout, outerIndex) => (
           <Box
+            key={"workout" + outerIndex}
             sx={{
               display: "flex",
               flexDirection: "column",
               alignItems: "stretch",
-              width: 650,
             }}
           >
+            <Divider />
+            <Box
+              sx={{
+                fontWeight: 700,
+                fontSize: "h6.fontSize",
+                margin: "4px 0px",
+              }}
+            >
+              Day {outerIndex + 1}
+            </Box>
             <TextField
-              label="New Workout Name"
-              value={routineInput}
-              onChange={handleChange(setRoutineInput, WORKOUT_NAME)}
+              label="Add Workout Day"
+              value={routine[outerIndex].day}
+              onChange={handleChange(setRoutine, WORKOUT_DAY, outerIndex)}
               variant="outlined"
               sx={{ margin: "4px 0px" }}
             />
-            {routine.map((workout, outerIndex) => (
-              <Box
-                key={"workout" + outerIndex}
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "stretch",
-                }}
-              >
-                <Divider />
-                <Box
-                  sx={{
-                    fontWeight: 700,
-                    fontSize: "h6.fontSize",
-                    margin: "4px 0px",
-                  }}
-                >
-                  Day {outerIndex + 1}
-                </Box>
-                <TextField
-                  label="Add Workout Day"
-                  value={routine[outerIndex].day}
-                  onChange={handleChange(setRoutine, WORKOUT_DAY, outerIndex)}
-                  variant="outlined"
-                  sx={{ margin: "4px 0px" }}
-                />
-                {workout.exercises.map((exercise, innerIndex) => (
-                  <TextField
-                    label="Add Exercise"
-                    value={routine[outerIndex].exercises[innerIndex].name}
-                    key={"exercise" + innerIndex}
-                    variant="outlined"
-                    onChange={handleChange(
-                      setRoutine,
-                      EXERCISE,
-                      outerIndex,
-                      innerIndex
-                    )}
-                    sx={{ margin: "4px 0px" }}
-                  />
-                ))}
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={addExercise(outerIndex)}
-                  sx={{ margin: "4px 0px", padding: "12px" }}
-                >
-                  Add Exercise
-                </Button>
-              </Box>
+            {workout.exercises.map((exercise, innerIndex) => (
+              <TextField
+                label="Add Exercise"
+                value={routine[outerIndex].exercises[innerIndex].name}
+                key={"exercise" + innerIndex}
+                variant="outlined"
+                onChange={handleChange(
+                  setRoutine,
+                  EXERCISE,
+                  outerIndex,
+                  innerIndex
+                )}
+                sx={{ margin: "4px 0px" }}
+              />
             ))}
-            <Divider />
             <Button
               variant="contained"
               color="primary"
-              onClick={addWorkoutDay}
+              onClick={addExercise(outerIndex)}
               sx={{ margin: "4px 0px", padding: "12px" }}
             >
-              Add Workout Day
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={createWorkout}
-              sx={{ margin: "4px 0px", padding: "12px" }}
-            >
-              Create Workout
+              Add Exercise
             </Button>
           </Box>
-        </form>
-      </ThemeProvider>
-    </div>
+        ))}
+        <Divider />
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={addWorkoutDay}
+          sx={{ margin: "4px 0px", padding: "12px" }}
+        >
+          Add Workout Day
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={createWorkout}
+          sx={{ margin: "4px 0px", padding: "12px" }}
+        >
+          Create Workout
+        </Button>
+      </Box>
+    </ThemeProvider>
   );
 };
 
