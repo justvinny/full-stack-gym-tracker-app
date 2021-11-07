@@ -2,23 +2,20 @@ import { SyntheticEvent, useState } from "react";
 import {
   Dialog,
   Box,
-  IconButton,
   Button,
-  FormControl,
-  InputLabel,
   MenuItem,
-  Select,
-  Table,
-  TableContainer,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
   SelectChangeEvent,
 } from "@mui/material";
-import { Delete } from "@material-ui/icons";
 import React from "react";
-import { Exercise, Workout, FeaturedExercises, Routine } from "../../../types";
+import {
+  Exercise,
+  Workout,
+  FeaturedExercises,
+  Routine,
+  SelectType,
+} from "../../../types";
+import FeaturedExercisesTable from "./FeaturedExercisesTable";
+import FeaturedExercisesSelectors from "./FeaturedExercisesSelectors";
 
 interface Props {
   open: boolean;
@@ -26,12 +23,6 @@ interface Props {
   featuredExercises: FeaturedExercises;
   setFeaturedExercises: React.Dispatch<React.SetStateAction<FeaturedExercises>>;
   routines: Routine[];
-}
-
-enum SelectType {
-  ROUTINE,
-  WORKOUT,
-  EXERCISE,
 }
 
 const EditFeaturedDialog = ({
@@ -195,82 +186,22 @@ const EditFeaturedDialog = ({
           "> div,button": { marginBottom: "8px" },
         }}
       >
-        <TableContainer>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell align="center">Exercise</TableCell>
-                <TableCell align="center">Weight</TableCell>
-                <TableCell align="center">Reps</TableCell>
-                <TableCell align="center">Action</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {featuredExercises.map((exercise, index) => (
-                <TableRow>
-                  <TableCell align="center">
-                    {exercise !== undefined ? exercise.name : "-"}
-                  </TableCell>
-                  <TableCell align="center">
-                    {exercise !== undefined
-                      ? exercise.sets[exercise.sets.length - 1].weight
-                      : "-"}
-                  </TableCell>
-                  <TableCell align="center">
-                    {exercise !== undefined
-                      ? exercise.sets[exercise.sets.length - 1].reps
-                      : "-"}
-                  </TableCell>
-                  <TableCell align="center">
-                    {exercise !== undefined ? (
-                      <IconButton size="small" onClick={deleteExercise(index)}>
-                        <Delete fontSize="small" color="error" />
-                      </IconButton>
-                    ) : (
-                      "-"
-                    )}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <FormControl>
-          <InputLabel id="select-routine-label">Select Routine</InputLabel>
-          <Select
-            labelId="select-routine-label"
-            label="Select Routine"
-            value={routineSelected}
-            onChange={handleChange(setRoutineSelected, SelectType.ROUTINE)}
-          >
-            <MenuItem value="">None</MenuItem>
-            {getRoutineChoices()}
-          </Select>
-        </FormControl>
-        <FormControl>
-          <InputLabel id="select-workout-label">Select Workout</InputLabel>
-          <Select
-            labelId="select-workout-label"
-            label="Select Workout"
-            value={workoutSelected}
-            onChange={handleChange(setWorkoutSelected, SelectType.WORKOUT)}
-          >
-            <MenuItem value="">None</MenuItem>
-            {getWorkoutChoices()}
-          </Select>
-        </FormControl>
-        <FormControl>
-          <InputLabel id="select-exercise-label">Select Exercise</InputLabel>
-          <Select
-            labelId="select-exercise-label"
-            label="Select Exercise"
-            value={exerciseSelected}
-            onChange={handleChange(setExerciseSelected, SelectType.EXERCISE)}
-          >
-            <MenuItem value="">None</MenuItem>
-            {getExerciseChoices()}
-          </Select>
-        </FormControl>
+        <FeaturedExercisesTable
+          featuredExercises={featuredExercises}
+          deleteExercise={deleteExercise}
+        />
+        <FeaturedExercisesSelectors
+          routineSelected={routineSelected}
+          workoutSelected={workoutSelected}
+          exerciseSelected={exerciseSelected}
+          setRoutineSelected={setRoutineSelected}
+          setWorkoutSelected={setWorkoutSelected}
+          setExerciseSelected={setExerciseSelected}
+          getRoutineChoices={getRoutineChoices}
+          getWorkoutChoices={getWorkoutChoices}
+          getExerciseChoices={getExerciseChoices}
+          handleChange={handleChange}
+        />
         <Button variant="contained" onClick={addExercise}>
           Add
         </Button>

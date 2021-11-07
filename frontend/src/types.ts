@@ -31,7 +31,11 @@ export interface Exercise {
   sets: WorkSet[];
 }
 
-export type FeaturedExercises = [Exercise | undefined, Exercise | undefined, Exercise | undefined];
+export type FeaturedExercises = [
+  Exercise | undefined,
+  Exercise | undefined,
+  Exercise | undefined
+];
 
 export interface WorkSet {
   _id?: ObjectId;
@@ -48,4 +52,10 @@ export interface Day {
   day: number;
   name: string;
   exercises: string[];
+}
+
+export enum SelectType {
+  ROUTINE,
+  WORKOUT,
+  EXERCISE,
 }

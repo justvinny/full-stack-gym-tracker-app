@@ -4,15 +4,16 @@ import InfoContainer from "../components/Home/InfoContainer";
 import WeightContainer from "../components/Home/WeightContainer";
 import ExercisesContainer from "../components/Home/ExercisesContainer";
 import RecentWorkoutContainer from "../components/Home/RecentWorkoutContainer";
-import { Workout, Exercise, Routine, User, FeaturedExercises } from "../types";
-import EditInfoDialog from "../components/Home/Dialoogs/EditInfoDialog";
-import EditWeightDialog from "../components/Home/Dialoogs/EditWeightDialog";
-import EditFeaturedDialog from "../components/Home/Dialoogs/EditFeaturedDialog";
+import { Workout, Routine, User, FeaturedExercises } from "../types";
+import EditInfoDialog from "../components/Home/Dialogs/EditInfoDialog";
+import EditWeightDialog from "../components/Home/Dialogs/EditWeightDialog";
+import EditFeaturedDialog from "../components/Home/Dialogs/EditFeaturedDialog";
 
 const HomePage = () => {
   // User object
   // Needs to be changed once backend is connected.
   // Might use context to get user data which is fetched after log in.
+  // eslint-disable-next-line
   const [user, setUser] = useState(mockUser);
 
   // Basic Info
@@ -32,6 +33,7 @@ const HomePage = () => {
   );
 
   // Latest workout
+  // eslint-disable-next-line
   const [lastWorkout, setLastWorkout] = useState(user.routines[0].workouts[0]);
 
   // Modal

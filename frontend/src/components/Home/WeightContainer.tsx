@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import DashboardGauge from "./DashboardGauge";
 import ContainerHeading from "./ContainerHeading";
 
@@ -9,7 +9,12 @@ interface Props {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const WeightContainer = ({ startWeight, currentWeight, goalWeight, setOpen }: Props) => (
+const WeightContainer = ({
+  startWeight,
+  currentWeight,
+  goalWeight,
+  setOpen,
+}: Props) => (
   <Box
     sx={{
       display: "flex",

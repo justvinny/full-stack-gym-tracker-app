@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import DashboardGauge from "./DashboardGauge";
 import ContainerHeading from "./ContainerHeading";
-import { Exercise, FeaturedExercises } from "../../types";
+import { FeaturedExercises } from "../../types";
 
 interface Props {
   featuredExercises: FeaturedExercises;
