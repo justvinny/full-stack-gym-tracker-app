@@ -5,8 +5,8 @@ import routineServices from "../services/routineServices";
 import CreateWorkout from "./CreateWorkout";
 import RoutineDetails from "./RoutineDetails";
 import customTheme from "../themes/customTheme";
-import { bgColor, textColor } from "../defaults";
 import { Routine } from "../types";
+import PageTitleHeader from "../components/PageTitleHeader";
 
 const TrackProgress = () => {
   const [routines, setRoutines] = useState([] as Routine[]);
@@ -31,30 +31,7 @@ const TrackProgress = () => {
               maxWidth: "650px",
             }}
           >
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "start",
-                border: "1px solid black",
-                borderRadius: "5px",
-                marginBottom: "10px",
-                bgcolor: bgColor,
-                color: textColor,
-              }}
-            >
-              <Box
-                sx={{
-                  fontSize: "h4.fontSize",
-                  fontFamily: "Impact",
-                  letterSpacing: 1.5,
-                  padding: "25px",
-                }}
-              >
-                Track Progress
-              </Box>
-            </Box>
+            <PageTitleHeader title={"Track Progress"} />
             <Box sx={{ display: "flex", flexDirection: "column" }}>
               {routines.map((routine, index) => (
                 <>

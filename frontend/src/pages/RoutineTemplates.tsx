@@ -1,5 +1,6 @@
 import RoutineCard from "../components/RoutineTemplates/RoutineCard";
 import { Box } from "@mui/material";
+import PageTitleHeader from "../components/PageTitleHeader";
 
 const mockData = [
   {
@@ -76,7 +77,8 @@ const mockData = [
 
 const RoutineTemplates = () => {
   return (
-    <Box sx={{width:"80vw"}}>
+    <Box sx={{ width: "90vw", maxWidth: "650px" }}>
+      <PageTitleHeader title="Routine Templates" />
       {mockData.map((routine, index) => (
         <RoutineCard key={routine.name + index} routine={routine} />
       ))}

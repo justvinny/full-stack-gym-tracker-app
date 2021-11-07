@@ -18,27 +18,24 @@ const RoutineCard = ({ routine }: Props) => {
   return (
     <Box
       sx={{
-        margin: "0px 10px",
-        marginBottom: 10,
+        margin: "0px",
+        marginBottom: "1px",
       }}
     >
       <Accordion>
         <AccordionSummary
-          expandIcon={<ExpandMore />}
+          expandIcon={<ExpandMore style={{ color: "#fff" }} />}
           sx={{
             display: "flex",
             flexDirection: "row",
-            alignItems: "end",
+            alignItems: "center",
             justifyContent: "space-between",
-            height: 100,
             bgcolor: bgColor,
             color: textColor,
-            borderRadius: 4,
-            fontSize: "3em",
             fontWeight: 700,
           }}
         >
-          <Box sx={{ fontSize: "h5.fontSize" }}>{routine.name}</Box>
+          <Box>{routine.name}</Box>
         </AccordionSummary>
         <AccordionDetails>
           <DetailedRoutine routine={routine} />

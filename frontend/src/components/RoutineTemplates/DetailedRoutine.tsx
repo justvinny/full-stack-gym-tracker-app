@@ -30,9 +30,10 @@ const DetailedRoutine = ({ routine }: Props) => {
           >
             <Box
               sx={{
-                fontSize: "h5.fontSize",
+                marginTop: "16px",
                 marginLeft: "16px",
                 fontWeight: 700,
+                textAlign: "center",
               }}
             >
               Day {workout.day} - {workout.name}
@@ -40,7 +41,9 @@ const DetailedRoutine = ({ routine }: Props) => {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell sx={{ fontWeight: 700 }}>Exercise</TableCell>
+                  <TableCell sx={{ fontWeight: 700, paddingTop: "4px" }}>
+                    Exercise
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

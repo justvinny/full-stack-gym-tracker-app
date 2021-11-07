@@ -1,5 +1,6 @@
 import { TextField, Button, Box, ThemeProvider, Divider } from "@mui/material";
 import { ChangeEvent, useState } from "react";
+import PageTitleHeader from "../components/PageTitleHeader";
 import routineServices from "../services/routineServices";
 import customTheme from "../themes/customTheme";
 import { Routine } from "../types";
@@ -130,6 +131,7 @@ const CreateWorkout = ({ setRoutines, routines }: Props) => {
           maxWidth: "650px",
         }}
       >
+        <PageTitleHeader title="New Workout" />
         <TextField
           label="New Workout Name"
           value={routineInput}
