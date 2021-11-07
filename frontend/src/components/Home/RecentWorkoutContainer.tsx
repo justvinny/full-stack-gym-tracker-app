@@ -25,42 +25,50 @@ const RecentWorkoutContainer = ({ lastWorkout }: Props) => (
       alignSelf: "flex-start",
     }}
   >
-    <Box
+    <TableContainer
+      component={Paper}
       sx={{
         boxShadow: "0px 0px 5px 2px",
+        height: { lg: "533px" },
+        borderRadius: "0px",
         marginLeft: { lg: "12px" },
-        padding: "16px",
-        height: { lg: "500px" },
+        width: "auto",
       }}
     >
-      <Box sx={{ marginBottom: "8px" }}>Last Workout - {lastWorkout.day}</Box>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
+      <Box
+        sx={{
+          marginTop: "16px",
+          marginLeft: "16px",
+          fontWeight: "bold",
+        }}
+      >
+        Last Workout - {lastWorkout.day}
+      </Box>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+            <TableCell>Weight</TableCell>
+            <TableCell>Sets</TableCell>
+            <TableCell>Reps</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {lastWorkout.exercises.map((exercise) => (
             <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell>Weight</TableCell>
-              <TableCell>Sets</TableCell>
-              <TableCell>Reps</TableCell>
+              <TableCell>{exercise.name}</TableCell>
+              <TableCell>
+                {exercise.sets[exercise.sets.length - 1].weight}
+              </TableCell>
+              <TableCell>{exercise.sets.length}</TableCell>
+              <TableCell>
+                {exercise.sets[exercise.sets.length - 1].reps}
+              </TableCell>
             </TableRow>
-          </TableHead>
-          <TableBody>
-            {lastWorkout.exercises.map((exercise) => (
-              <TableRow>
-                <TableCell>{exercise.name}</TableCell>
-                <TableCell>
-                  {exercise.sets[exercise.sets.length - 1].weight}
-                </TableCell>
-                <TableCell>{exercise.sets.length}</TableCell>
-                <TableCell>
-                  {exercise.sets[exercise.sets.length - 1].reps}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Box>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   </Grid>
 );
 

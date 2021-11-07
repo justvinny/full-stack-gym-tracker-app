@@ -15,8 +15,12 @@ const ContainerHeading = ({ label, setOpen }: Props) => (
       alignItems: "center",
     }}
   >
-    <Box>{label}</Box>
-    <Button variant="text" style={{ textTransform: "none" }} onClick={() => setOpen(true)}>
+    <Box sx={{ fontWeight: "bold" }}>{label}</Box>
+    <Button
+      variant="text"
+      style={{ textTransform: "none" }}
+      onClick={() => setOpen(true)}
+    >
       Edit
     </Button>
   </Box>
