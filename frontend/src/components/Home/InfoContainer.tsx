@@ -2,6 +2,7 @@ import { Box, Grid, Avatar } from "@mui/material";
 import ContainerHeading from "./ContainerHeading";
 import { bgColor } from "../../defaults";
 import { getInitials } from "../../utils";
+import InfoText from "./InfoText";
 
 interface Props {
   name: string;
@@ -48,10 +49,10 @@ const InfoContainer = ({ name, age, height, aboutMe, setOpen }: Props) => {
             marginLeft: { xs: 0, sm: "8px" },
           }}
         >
-          <Box>Name: {name}</Box>
-          <Box>Age: {age}</Box>
-          <Box>Height: {height}cm</Box>
-          <Box sx={{ textAlign: "justify" }}>About Me: {aboutMe}</Box>
+          <InfoText label="Name:" content={name} /> 
+          <InfoText label="Age:" content={age.toString()} /> 
+          <InfoText label="Height:" content={height.toString()} /> 
+          <InfoText label="About Me:" content={aboutMe} /> 
         </Box>
       </Box>
     </Grid>
